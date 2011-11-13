@@ -112,7 +112,7 @@ var whackacake = function all() {
     my.start = function(){
         my.game = new Game();
         my.game.init();
-        my.game.sound.music.play();
+        my.game.sounds.music.play();
         my.loop = setInterval("my.game.loop()", my.game.loopInterval);
     }
 
@@ -407,8 +407,8 @@ var whackacake = function all() {
         }
 
         this.gameOver = function() {
-            my.game.sound.music.currentTime = 0;
-            my.game.sound.music.pause();
+            my.game.sounds.music.currentTime = 0;
+            my.game.sounds.music.pause();
             
             var oldScore = $this.score;
             if ($this.cakesFinished > 0) {
