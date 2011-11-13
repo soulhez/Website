@@ -53,7 +53,7 @@ var whackacake = function all() {
         ingredientStaysTimeRandom:50,
         ingredientstaysTimeConstant:500,
         goodScore:100,
-        badScore:-100,
+        badScore:-200,
         numLayersPerCake:10,
         
         gameOverCallback:function(score, cakes){}
