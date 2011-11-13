@@ -78,7 +78,7 @@ button{ border:none; cursor:pointer; background:none;}
 /************************************************************
 * Home
 ************************************************************/
-.home_like { padding-left:400px;}
+.home_like { padding-left:345px; padding-top:22px;}
 
 #home_main { position:relative; width:940px; height:480px;}
 
