@@ -49,11 +49,11 @@ var whackacake = function all() {
     my = {};
     my.config = {
         spawnProbability:3/100,
-        gameTime:61,
+        gameTime:20,
         ingredientStaysTimeRandom:50,
         ingredientstaysTimeConstant:500,
         goodScore:100,
-        badScore:-100,
+        badScore:-200,
         numLayersPerCake:10,
         
         gameOverCallback:function(score, cakes){}
@@ -110,7 +110,9 @@ var whackacake = function all() {
 
     }
 
-    my.start = function(special_ingredient){
+    my.start = function(){
+        // Loading 
+        special_ingredient = 2
         my.game = new Game(special_ingredient);
         my.game.init();
         my.game.sounds.music.play();
@@ -293,22 +295,29 @@ var whackacake = function all() {
 
             var messageX = x - 50;
             var messageY = y - 50;
+            var innerColor = 'orange';
+            var outerColor = 'white';
+
             var scoreMessage;
             if (scoreToAdd > 0) {
                 scoreMessage = "+"+scoreToAdd;
             } else {
+                innerColor = 'brown';
+                outerColor = 'green';
                 scoreMessage = scoreToAdd;
             }
             
             if (isSpecial) {
+                innerColor = 'orange';
+                outerColor = 'blue';
                 scoreMessage+=" x 2";
             }
             //animate score message popping up
             var textAnimation = new my.TransAnimation(new my.Coords(messageX, messageY),
                     new my.Coords(messageX, messageY - 50),
-                    my.getDurationInFrames(1000));
+                    my.getDurationInFrames(2000));
 
-            $this.animatedText.push( new my.AnimatedText( messageX, messageY, textAnimation, scoreMessage ));
+            $this.animatedText.push( new my.AnimatedText( messageX, messageY, innerColor, outerColor, textAnimation, scoreMessage ));
 
             if (isSpecial) {
                 scoreToAdd = scoreToAdd*2;
@@ -379,11 +388,13 @@ var whackacake = function all() {
         this.toggleMusic = function() {
             // DONT F**K AROUND
             if (my.game.sounds.music.volume < 0.5) {
-                my.game.sounds.music.volume=1
+                my.game.sounds.music.volume=1;
+                $(".btn_sound1").removeClass("btn_sound1_inactive");
+            } else if (my.game.sounds.music.volume > 0.5) {
+                my.game.sounds.music.volume=0;
+                $(".btn_sound1").addClass("btn_sound1_inactive");
             }
-            if (my.game.sounds.music.volume > 0.5) {
-                my.game.sounds.music.volume=0
-            }
+            return false;
         }
 
         this.incrementCakes = function() {
@@ -450,9 +461,7 @@ var whackacake = function all() {
             }
             $this.cursor.draw($this.ctx);
             $this.ctx_cake_stack.clearRect(0, 0, my.canvas_cake_stack.width, my.canvas_cake_stack.height);
-            $this.ctx.font = "20pt Arial";
-						$this.ctx.fontColor = "#FFF";
-            
+
             for (i = 0; i < $this.animatedText.length; i++) {
                 $this.animatedText[i].draw($this.ctx);
             }
@@ -468,7 +477,7 @@ var whackacake = function all() {
             
             var oldScore = $this.score;
             if ($this.cakesFinished > 0) {
-                $this.score = $this.score * $this.cakesFinished
+                $this.score = $this.score;
             }
             my.config.gameOverCallback($this.score, $this.cakesFinished);
         }
