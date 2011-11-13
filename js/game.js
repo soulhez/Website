@@ -367,6 +367,24 @@ var whackacake = function all() {
             
             
         }
+        
+        this.setMusic = function(some_bool) {
+            if (some_bool) {
+                my.game.sounds.music.volume = 1;
+            } else {
+                my.game.sounds.music.volume = 0;
+            }    
+        }
+        
+        this.toggleMusic = function() {
+            // DONT F**K AROUND
+            if (my.game.sounds.music.volume < 0.5) {
+                my.game.sounds.music.volume=1
+            }
+            if (my.game.sounds.music.volume > 0.5) {
+                my.game.sounds.music.volume=0
+            }
+        }
 
         this.incrementCakes = function() {
             $this.cakesFinished++;
