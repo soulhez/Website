@@ -110,8 +110,8 @@ var whackacake = function all() {
 
     }
 
-    my.start = function(){
-        my.game = new Game();
+    my.start = function(special_ingredient){
+        my.game = new Game(special_ingredient);
         my.game.init();
         my.game.sounds.music.play();
         my.loop = setInterval("my.game.loop()", my.game.loopInterval);
@@ -162,8 +162,9 @@ var whackacake = function all() {
 
     ///---------------- objects ----------------
 
-    var Game = function() {
+    var Game = function(special_ingredient) {
         var $this = this;
+        $this.special_ingredient = special_ingredient;
 
         this.init = function() {
             $this.score = 0;
@@ -286,23 +287,32 @@ var whackacake = function all() {
         this.clickedIngredient = function(cup,x, y) {
             //var type = cup.hasIngredient().getType();
             //$this.cakeStack.addToCakeStack(type);
+            var isSpecial = (cup.ingredient.type_no == my.game.special_ingredient)
+            
             var scoreToAdd = cup.hit();
 
             var messageX = x - 50;
             var messageY = y - 50;
             var scoreMessage;
             if (scoreToAdd > 0) {
-                scoreMessage = "+"+scoreToAdd
+                scoreMessage = "+"+scoreToAdd;
             } else {
-                scoreMessage = scoreToAdd
+                scoreMessage = scoreToAdd;
+            }
+            
+            if (isSpecial) {
+                scoreMessage+=" x 2";
             }
             //animate score message popping up
             var textAnimation = new my.TransAnimation(new my.Coords(messageX, messageY),
                     new my.Coords(messageX, messageY - 50),
                     my.getDurationInFrames(1000));
 
-            $this.animatedText.push( new my.AnimatedText( messageX, messageY, textAnimation, scoreToAdd ));
+            $this.animatedText.push( new my.AnimatedText( messageX, messageY, textAnimation, scoreMessage ));
 
+            if (isSpecial) {
+                scoreToAdd = scoreToAdd*2;
+            }
             $this.score += scoreToAdd;
         }
 
