@@ -90,20 +90,20 @@ button{ border:none; cursor:pointer; background:none;}
 .btn_play_large:hover { background-position:0 -100px;}
 .btn_play_large:active { background-position:0 -200px;}
 
-.home_nav { top:220px; left:80px; position:absolute; width:400px; height:auto;}
+.home_nav { top:185px; left:80px; position:absolute; width:400px; height:auto;}
 .home_nav li { padding-bottom:10px;}
 .home_nav li a { height:51px; display:block; text-indent:-99999px; overflow:hidden; background:url(images/sp_btns.png) no-repeat 0 0;}
 .home_nav li a.btn_how_to_play { width:250px; background-position:0 0;}
 .home_nav li a.btn_high_scores{ width:236px; background-position:-250px 0;}
-.home_nav li a.btn_options{ width:189px; background-position:right 0;}
+.home_nav li a.btn_caracters{ width:228px; background-position:-883px 0;}
 
 .home_nav li a.btn_how_to_play:hover { background-position:0 -51px;}
 .home_nav li a.btn_high_scores:hover { background-position:-250px -51px;}
-.home_nav li a.btn_options:hover { background-position:right -51px;}
+.home_nav li a.btn_caracters:hover { background-position:-883px -51px;}
 
 .home_nav li a.btn_how_to_play:active { background-position:0 -102px;}
 .home_nav li a.btn_high_scores:active { background-position:-250px -102px;}
-.home_nav li a.btn_options:active { background-position:right -102px;}
+.home_nav li a.btn_caracters:active { background-position:-883px -102px;}
 
 
 .home_sidebar { float:right; width:190px; height:auto; margin-right:-2px; padding-top:2px;}
@@ -121,6 +121,17 @@ button{ border:none; cursor:pointer; background:none;}
 .panel_score_listing li { display:block; padding:5px 0; border-bottom:1px dashed #acd799;}
 
 .available_wp { position:absolute; bottom:0; right:0; width:574px; height:79px; background:url(images/available_on.png) no-repeat 0 0;}
+
+/************************************************************
+* Characters page
+************************************************************/
+#primary .character_listing { display:block; margin:0;}
+#primary .character_listing li { list-style-type:none !important; padding:10px 0 !important;}
+.character_image { float:left;  width:232px; height:231px;}
+
+.character_details { float:left; width:380px; padding-top:25px;}
+.character_details h4 { color:#111; font:bold 24px/28px Arial, Helvetica, sans-serif;}
+.character_details p { padding-top:14px !important;}
 
 
 /************************************************************
@@ -213,6 +224,7 @@ button{ border:none; cursor:pointer; background:none;}
 .h_contact { width:180px; height:34px; background-position:0 -72px;}
 .h_press { width:115px; height:34px; background-position:0 -108px;}
 .h_privacy { width:304px; height:34px; background-position:0 -144px;}
+.h_caracters { width:240px; height:34px; background-position:-119px -108px;}
 
 #primary p { padding-top:18px; font:normal 14px/22px Arial, Helvetica, sans-serif; color:#2a2c2e;}
 
