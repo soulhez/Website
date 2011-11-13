@@ -49,7 +49,7 @@ var whackacake = function all() {
     my = {};
     my.config = {
         spawnProbability:3/100,
-        gameTime:20,
+        gameTime:60,
         ingredientStaysTimeRandom:50,
         ingredientstaysTimeConstant:500,
         goodScore:100,
