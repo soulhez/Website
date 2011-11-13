@@ -97,7 +97,7 @@
 <body onload="whackacake.init({gameOverCallback:gameOver})">
 <div id='game' class='cursor_up'>
   
-  <div id='score_div' >
+  <div id='score_div'>
       Score:<span id='game_score'  class='orange_text' >0</span>
   </div>
   <div id="cake_div">
@@ -122,7 +122,7 @@
 </div>
 <button id="startButton" type="button" onclick="buttonClicked()">Start</button>
 <form action="" method="get" accept-charset="utf-8">
-    <ul style="list-style-type:none;">
+    <ul style="list-style-type:none; display:none">
         <li>
             <label for="spawnProbText">Spawn probability: </label>
             <input name="spawProbText" id="spawnProbText" />

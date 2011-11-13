@@ -98,7 +98,7 @@ var whackacake = function all() {
 				* Currently used to adjust animation duration
 				**/
 				
-				my.isRunningOnIos = false;
+				my.isRunningOnIos = true;
 				my.isRunningOnAndroid = false;
 				if (navigator.userAgent.match(/like Mac OS X/i)) {
 				   my.isRunningOnIos = true;
@@ -135,7 +135,7 @@ var whackacake = function all() {
 
     my.getDurationInFrames = function(milliseconds){
 		if (my.isRunningOnIos)
-        return milliseconds / my.game.loopInterval/2;
+        return milliseconds / my.game.loopInterval/3;
 		else if (my.isRunningOnAndroid)
 			return milliseconds/my.game.loopInterval/5;
 		else
