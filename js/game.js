@@ -125,7 +125,7 @@ var whackacake = function all() {
         // Loading 
         
         special_ingredient = getAndDrawRandomSpriteToLoadingScreen();
-        setTimeout("my.actuallyStart("+special_ingredient+")", 2000);
+        setTimeout("my.actuallyStart("+special_ingredient+")", 2000); //TODO 4
         $(".game_loading_wp").show();
         $('#canvas_wp').hide();
 
