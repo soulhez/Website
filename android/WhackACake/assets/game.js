@@ -147,11 +147,11 @@ var whackacake = function all() {
 
         this.loadImages = function() {
             $this.images.cup = new Image();
-            $this.images.cup.src = "file:///android_asset/images/cup.jpeg";
+            $this.images.cup.src = "file:///android_asset/http://static.whackacake.com/images/cup.jpeg";
             $this.images.choc = new Image();
-            $this.images.choc.src = "file:///android_asset/images/chocolate.jpg";
+            $this.images.choc.src = "file:///android_asset/http://static.whackacake.com/images/chocolate.jpg";
             $this.images.cakeLayers = new Image();
-            $this.images.cakeLayers.src = "file:///android_asset/images/cake_layers.png";
+            $this.images.cakeLayers.src = "file:///android_asset/http://static.whackacake.com/images/cake_layers.png";
         }
 
 
