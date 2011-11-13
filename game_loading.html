@@ -7,6 +7,17 @@
 <!--[if IE]><style type="text/css">.clearfix{zoom:1; display:block;}</style><![endif]-->
 <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+
+    <script>
+    var random = Math.floor(Math.random()*6);
+    random = random + 1;
+    var stringnum = "" + random;
+    
+    $(document).ready(function() {
+    $(".randomsprite").addClass(stringnum);
+    console.log(random);
+    });
+    </script>
 </head>
 
 <body>
@@ -29,9 +40,13 @@
   </ul>
   
   <div class="game_container">
-  	
+	
+    
     <div class="game_loading_wp">
+    <div class="randomspritecont">
+        <span class="randomsprite"></span>
     	<span class="ajax_loader">Loading...</span>
+    </div>
     </div><!--/.game_loading_wp-->
     
   </div><!--/.game_container-->
