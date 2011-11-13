@@ -1,0 +1,290 @@
+/************************************************************
+* CSS Reset
+************************************************************/
+html { overflow-y:scroll }
+* { margin:0; padding:0; }
+table { border-collapse: collapse; border-spacing: 0; }
+img { border:0; }
+li { list-style-type:none; }
+
+.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; }
+.clear { clear:both; }
+
+body { position: relative; /*overflow-x:hidden;*/ font:normal 12px Arial, Helvetica, sans-serif; color:#333333; background:#c6e9fd url(images/body_bg.jpg) no-repeat center 0; }
+
+a, a:visited { cursor:pointer; text-decoration:none; outline:none; color:#FF0000; }
+a:hover { text-decoration:underline; }
+input { outline:none; }
+input::-moz-focus-inner { border: 0; }
+
+button{ border:none; cursor:pointer; background:none;}
+
+
+
+/************************************************************
+* Common styles
+************************************************************/
+
+.fleft{ float:left;}
+.fright{ float:right;}
+.spacer6 { display:block; clear:both; height:6px;}
+.spacer10 { display:block; clear:both; height:10px;}
+.spacer30 { display:block; clear:both; height:30px;}
+.spacer70 { display:block; clear:both; height:70px;}
+
+.hr_01 { height:0;line-height:0; display:block; clear:both; padding-top:20px; margin-bottom:2px; border:none; border-bottom:2px dashed #A2A9B0;}
+
+
+#mainWrapper { width:940px; margin:0 auto;}
+
+/************************************************************
+* Header
+************************************************************/
+#header { position:relative; width:940px; height:51px; margin:0 auto;}
+
+.main_nav { position:absolute; top:0; right:0; height:50px; width:605px;}
+.main_nav li { float:left; display:block; width:auto;}
+.main_nav a { float:left; display:block; text-indent:-99999px; overflow:hidden; height:49px; background:url(images/main_nav.png) no-repeat 0 0;}
+.main_nav a.a_home { width:90px; background-position:0 0;}
+.main_nav a.a_about { width:120px; background-position:-90px 0;}
+.main_nav a.a_press { width:88px; background-position:-210px 0;}
+.main_nav a.a_blog { width:83px; background-position:-298px 0;}
+.main_nav a.a_contact { width:116px; background-position:-381px 0;}
+.main_nav a.a_donate { width:108px; background-position:right 0;}
+
+.main_nav a.a_home:hover { background-position:0 -50px;}
+.main_nav a.a_about:hover { background-position:-90px -50px;}
+.main_nav a.a_press:hover { background-position:-210px -50px;}
+.main_nav a.a_blog:hover { background-position:-298px -50px;}
+.main_nav a.a_contact:hover { background-position:-381px -50px;}
+.main_nav a.a_donate:hover { background-position:right -50px;}
+
+.main_nav a.a_home:active { background-position:0 -100px;}
+.main_nav a.a_about:active { background-position:-90px -100px;}
+.main_nav a.a_press:active { background-position:-210px -100px;}
+.main_nav a.a_blog:active { background-position:-298px -100px;}
+.main_nav a.a_contact:active { background-position:-381px -100px;}
+.main_nav a.a_donate:active { background-position:right -100px;}
+
+.social_nav { z-index:3; position:absolute; top:5px; left:100px; width:220px; height:32px;}
+.social_nav li { float:left; display:block; width:auto; padding-right:12px;}
+.social_nav a { float:left; height:32px; display:block; text-indent:-99999px; overflow:hidden; cursor:pointer; background:url(images/sp_social.png) no-repeat 0 0; opacity:0.9;}
+.social_nav a:hover { opacity:1;}
+
+.social_nav a.a_facebook { width:104px; background-position:0 0;}
+.social_nav a.a_twitter { width:92px; background-position:0 -32px;}
+
+
+/************************************************************
+* Home
+************************************************************/
+.home_like { padding-left:400px;}
+
+#home_main { position:relative; width:940px; height:480px;}
+
+.home_logo { z-index:10; position:absolute; top:-73px; left:-30px; width:435px; height:430px; text-indent:-99999px; overflow:hidden; background:url(images/whack_a_cake_large_logo.png) no-repeat 0 0;}
+
+.home_panel { float:left; position:relative; width:405px; height:402px; margin-left:335px; background:url(images/home_panel.png) no-repeat right 0;}
+
+.btn_play_large { position:relative; top:50px; left:40px; width:309px; height:98px; display:block; text-indent:-99999px; overflow:hidden; background:url(images/btn_play_large.png) no-repeat 0 0;}
+.btn_play_large:hover { background-position:0 -100px;}
+.btn_play_large:active { background-position:0 -200px;}
+
+.home_nav { top:220px; left:80px; position:absolute; width:400px; height:auto;}
+.home_nav li { padding-bottom:10px;}
+.home_nav li a { height:51px; display:block; text-indent:-99999px; overflow:hidden; background:url(images/sp_btns.png) no-repeat 0 0;}
+.home_nav li a.btn_how_to_play { width:250px; background-position:0 0;}
+.home_nav li a.btn_high_scores{ width:236px; background-position:-250px 0;}
+.home_nav li a.btn_options{ width:189px; background-position:right 0;}
+
+.home_nav li a.btn_how_to_play:hover { background-position:0 -51px;}
+.home_nav li a.btn_high_scores:hover { background-position:-250px -51px;}
+.home_nav li a.btn_options:hover { background-position:right -51px;}
+
+.home_nav li a.btn_how_to_play:active { background-position:0 -102px;}
+.home_nav li a.btn_high_scores:active { background-position:-250px -102px;}
+.home_nav li a.btn_options:active { background-position:right -102px;}
+
+
+.home_sidebar { float:right; width:190px; height:auto; margin-right:-2px; padding-top:2px;}
+.home_sidebar a:hover { opacity:0.8;}
+
+.sidebar { float:left; width:190px; height:auto; margin-left:-2px; padding-top:2px;}
+.sidebar a:hover { opacity:0.8;}
+
+.sidebar_logo { z-index:10; width:240px; height:238px; margin-left:-26px; display:block; text-indent:-99999px; overflow:hidden; background:url(images/whack_a_cake_logo.png) no-repeat 0 0; }
+
+.panel_score { position:relative; width:187px; height:143px; overflow:hidden; background:url(images/panel_score.png) no-repeat 0 0;}
+.panel_score .a_view_all_scores { position:absolute; top:0; right:15px; padding-right:10px; display:block; width:auto; height:14px; font-weight:bold; color:#F00; background:url(images/arrow_icon.png) no-repeat right 4px;}
+
+.panel_score_listing { position:absolute; top:38px; left:25px; width:134px; height:85px; color:#FFF0AA; font-weight:bold;}
+.panel_score_listing li { display:block; padding:5px 0; border-bottom:1px dashed #acd799;}
+
+
+/************************************************************
+* Game page
+************************************************************/
+#main_game_wp { position:relative; width:828px; height:auto; margin:0 auto; padding-top:26px;}
+
+.second_nav { z-index:10; position:absolute; top:9px; right:22px; width:442px; height:29px; display:block;}
+.second_nav li { float:left; width:auto; display:block;}
+.second_nav li a { height:29px; display:block; text-indent:-9999px; overflow:hidden; background:url(images/second_nav.png) no-repeat 0 0;}
+
+.second_nav li a.a1_home { width:65px; background-position:0 0;}
+.second_nav li a.a1_about { width:90px; background-position:-65px 0;}
+.second_nav li a.a1_press { width:61px; background-position:-155px 0;}
+.second_nav li a.a1_blog { width:57px; background-position:-216px 0;}
+.second_nav li a.a1_contact { width:86px; background-position:-270px 0;}
+.second_nav li a.a1_donate { width:83px; background-position:right 0;}
+
+.second_nav li a.a1_home:hover { background-position:0 -30px;}
+.second_nav li a.a1_about:hover { background-position:-65px -30px;}
+.second_nav li a.a1_press:hover { background-position:-155px -30px;}
+.second_nav li a.a1_blog:hover { background-position:-216px -30px;}
+.second_nav li a.a1_contact:hover { background-position:-270px -30px;}
+.second_nav li a.a1_donate:hover { background-position:right -30px;}
+
+.second_nav li a.a1_home:active { background-position:0 -60px;}
+.second_nav li a.a1_about:active { background-position:-65px -60px;}
+.second_nav li a.a1_press:active { background-position:-155px -60px;}
+.second_nav li a.a1_blog:active { background-position:-216px -60px;}
+.second_nav li a.a1_contact:active { background-position:-270px -60px;}
+.second_nav li a.a1_donate:active { background-position:right -60px;}
+
+.game_controls { z-index:10; position:absolute; top:10px; left:20px;}
+.game_controls li { float:left; display:block;}
+.game_controls li a { display:block; overflow:hidden; text-indent:-9999px; opacity:0.8; background:url(images/game_controlers.png) no-repeat 0 0;}
+.game_controls li a:hover { opacity:1;}
+.game_controls li a:active { margin-top:1px;}
+
+.game_controls li a.btn_sound1 { width:50px; height:52px; background-position:0 0;}
+.game_controls li a.btn_sound1.btn_sound1_inactive { background-position:0 -52px;}
+
+.game_controls li a.btn_how1 { width:51px; height:52px; background-position:-50px 0;}
+.game_controls li a.btn_scores1 { width:50px; height:52px; background-position:right 0;}
+
+
+.game_container { position:relative; width:828px; height:528px; padding-top:12px; background:url(images/game_container.png) no-repeat 0 0;}
+
+.canvas_wp { width:800px; height:500px; margin:0 auto;}
+.game_loading_wp { position:relative; width:800px; height:500px; margin:0 auto; background:url(images/game_loading_wp.png) no-repeat 0 0;}
+.ajax_loader { position:absolute; top:250px; left:50%; margin-left:-21px; width:42px; height:42px; display:block; text-indent:-9999px; overflow:hidden; background:url(images/loader.gif) no-repeat 0 0;}
+
+
+.your_score_wp { position:relative; width:800px; height:500px; margin:auto; background:url(images/congrats_bg.png) no-repeat 0 0;}
+.submit_name_wp { position:absolute; top:58px; right:107px; width:236px; height:21px;}
+
+.input_txt { float:left; width:183px; height:20px; line-height:20px; border:0; text-decoration:blink;}
+.input_txt:focus { text-decoration:none;}
+
+.input_submit { float:right; width:49px; height:21px; line-height:20px; border:0; cursor:pointer; background-color:transparent;}
+
+.nr_score { position:absolute; top:102px; left:590px; display:block; width:150px; height:50px; font:bold 46px/46px "Comic Sans MS", cursive; color:#f00;}
+.nr_complete_cakes { position:absolute; top:158px; left:626px; display:block; width:150px; height:30px; font:bold 30px/30px "Comic Sans MS", cursive; color:#f00;}
+.nr_score_total {position:absolute; top:215px; left:570px; display:block; width:150px; height:52px; font:bold 52px/52px "Comic Sans MS", cursive; color:#f00; text-decoration:underline;}
+
+.game_buttons { position:absolute; top:320px; left:450px; width:250px; height:140px; display:block;}
+.game_buttons li { padding-bottom:10px;}
+.game_buttons li a { height:51px; display:block; text-indent:-99999px; overflow:hidden; background:url(images/sp_btns.png) no-repeat 0 0;}
+.game_buttons li a.btn_play_again { width:219px; background-position:-485px 0;}
+.game_buttons li a.btn_donate { width:179px; background-position:-704px 0;}
+
+.game_buttons li a.btn_play_again:hover {background-position:-485px -51px;}
+.game_buttons li a.btn_donate:hover { background-position:-704px -51px;}
+
+.game_buttons li a.btn_play_again:active {background-position:-485px -102px;}
+.game_buttons li a.btn_donate:active { background-position:-704px -102px;}
+
+/************************************************************
+* Footer
+************************************************************/
+
+#primary { float:right; padding-top:25px;}
+.primary_top { width:737px; height:35px; background:url(images/primary_top_bg.png) no-repeat center 0;}
+.primary_body { width:637px; height:auto; padding:15px 50px 30px; background:url(images/primary_body_bg.png) repeat-y 0 0;}
+.primary_footer { width:737px; height:35px; background:url(images/primary_footer_bg.png) no-repeat center 0;}
+
+#primary h1 { font:22px Arial, Helvetica, sans-serif; color:#512f16; padding-bottom:5px;}
+.sp_txt { display:block; text-indent:-999999px; overflow:hidden; background:url(images/sp_txt.png) no-repeat 0 0;}
+.h_about { width:190px; height:34px; background-position:0 0;}
+.h_terms { width:275px; height:34px; background-position:0 -36px;}
+.h_contact { width:180px; height:34px; background-position:0 -72px;}
+.h_press { width:115px; height:34px; background-position:0 -108px;}
+.h_privacy { width:304px; height:34px; background-position:0 -144px;}
+
+#primary p { padding-top:18px; font:normal 14px/22px Arial, Helvetica, sans-serif; color:#2a2c2e;}
+
+#primary h3 { font:bold 15px/18px Arial, Helvetica, sans-serif; padding-top:22px;}
+
+#primary ul { padding:18px 0 4px;}
+#primary ul li { list-style-type:disc; padding-bottom:5px; margin-left:20px; font-size:13px; line-height:19px;}
+
+#primary ol { padding:18px 0 4px;}
+#primary ol li { list-style-type:decimal; padding-bottom:5px; margin-left:20px; font-size:13px; line-height:19px;}
+
+/************************************************************
+* Footer
+************************************************************/
+
+#footer { position:relative; width:900px; height:50px; padding:0 23px; margin:0 auto 20px; font-size:11px; font-weight:bold; text-shadow:0 1px 0 #c50700; background:url(images/footer_bg.png) no-repeat 0 0;}
+#footer a { color:#f1f1f1;}
+
+.copyright { display:block; float:left; width:auto; color:#f1f1f1; line-height:46px; font-weight:normal;}
+.copyright a { text-decoration:underline; font-weight:bold;}
+.copyright a:hover { text-decoration:none;}
+
+.footer_links { float:right; width:auto; padding-top:16px;}
+.footer_links li { float:left; padding:0 12px; border-right:1px solid #a40d00;}
+.footer_links li.last { border:none; padding-right:0px;}
+
+.ic_clube_01 { position:absolute; top:-125px; left:270px; width:168px; height:161px; text-indent:-99999px; overflow:hidden; background:url(images/clube_01.png) no-repeat 0 0;}
+.ic_clube_04 { position:absolute; top:-50px; left:380px; width:168px; height:161px; text-indent:-99999px; overflow:hidden; background:url(images/clube_01.png) no-repeat 0 0;}
+
+.ic_clube_02 { position:absolute; top:15px; left:0; width:168px; height:161px; text-indent:-99999px; overflow:hidden; background:url(images/clube_02.png) no-repeat 0 0;}
+.ic_clube_03 { position:absolute; top:-30px; left:3px; width:168px; height:161px; text-indent:-99999px; overflow:hidden; background:url(images/clube_02.png) no-repeat 0 0;}
+
+
+
+/************************************************************
+* Jquery UI
+************************************************************/
+.ui_modal_box { background-color:#fff }
+
+.def_modal_box { background-color:#fff }
+
+.ui-dialog { padding:14px 18px 18px; background-color:#fff; border:10px solid #ff8d13; 
+-moz-border-radius:16px; -webkit-border-radius:16px; border-radius:16px;
+-moz-box-shadow:0 2px 2px rgba(0,0,0, 0.3); -webkit-box-shadow:0 2px 2px rgba(0,0,0, 0.3); box-shadow:0 2px 2px rgba(0,0,0, 0.3); }
+
+.ui-dialog-titlebar { position:relative; height:30px; padding:12px 0 20px; color:#47250c; font-weight:bold; }
+.ui-dialog-titlebar-close { position:absolute; top:11px; right:0px; width:84px; height:29px; display:block; text-indent:-9999px; background:url(images/btn_close.png) no-repeat 0 0; }
+.ui-dialog-titlebar-close:hover { background-position:0 -29px; }
+
+.ui-widget-overlay { position:absolute; top:0; left:0; background-color:#000; opacity:0.3; filter:alpha(opacity=30)}
+
+.ui_modalBox_body { padding:12px 14px; background-color:#feffdd; border:2px solid #e7e8c9; -moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px;}
+
+.ui_modalBox_footer { padding:18px 14px; background-color:#f5f5f5; border-top:1px solid #e7e7e7}
+.ui_modalBox_footer .ui_controls {}
+
+
+#ui-dialog-title-how-to-play-pop { width:203px; height:25px; display:block; text-indent:-99999px; overflow:hidden; background:url(images/sp_txt.png) no-repeat 0 -200px;}
+
+#ui-dialog-title-high-scores-pop { width:203px; height:25px; display:block; text-indent:-99999px; overflow:hidden; background:url(images/sp_txt.png) no-repeat 0 -227px;}
+
+
+
+.score_table_wp { position:relative; width:437px; height:301px; margin:10px auto; background:url(images/score_board.jpg) no-repeat 0 0;}
+.inner_score_table_wp { position:absolute; top:60px; left:22px; width:404px; height:218px; overflow-y:scroll;}
+
+.inner_score_table_wp table { width:96%;}
+.inner_score_table_wp table tr:hover { background-color:#30a500;}
+.inner_score_table_wp table td { padding:6px 0; font:bold 15px Arial, Helvetica, sans-serif; color:#fff0aa; border-bottom:1px dashed #c5ffac;}
+.inner_score_table_wp table .active_player td { color:#368512; background-color:#c5ffac;}
+
+.txt_left { padding-left:6px;}
+.txt_right { padding-right:10px;}
+
+
+
+
