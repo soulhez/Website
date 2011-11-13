@@ -384,7 +384,12 @@ var whackacake = function all() {
         }
 
         this.getRandomIngredient = function() {
-            return new my.Ingredient(Math.floor(Math.random()*10));
+            // 50% chance of only a good ingredient:
+            if (Math.random() < 0.5) {
+                return new my.Ingredient(Math.floor(Math.random()*5));
+            } else {
+                return new my.Ingredient(Math.floor(Math.random()*10));
+            }
         }
 
 
