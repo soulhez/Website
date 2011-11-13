@@ -403,7 +403,9 @@ var whackacake = function all() {
             }
             $this.cursor.draw($this.ctx);
             $this.ctx_cake_stack.clearRect(0, 0, my.canvas_cake_stack.width, my.canvas_cake_stack.height);
-            $this.ctx.font = "40pt ARia";
+            $this.ctx.font = "20pt Arial";
+						$this.ctx.fontColor = "#FFF";
+            
             for (i = 0; i < $this.animatedText.length; i++) {
                 $this.animatedText[i].draw($this.ctx);
             }
