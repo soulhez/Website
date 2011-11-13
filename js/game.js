@@ -15,14 +15,14 @@
         }
     };
 }*/
-
+var argh = {};
 
 getAndDrawRandomSpriteToLoadingScreen = function() {
     // Created by Dan, Hacked to pieces by John
     var random = Math.floor(Math.random()*6);
     random = random + 1;
     var stringnum = "rs" + random;
-    var special_ingredient_map = [undefined,0,1,2,3,4,1];
+    var special_ingredient_map = [undefined,4,3,2,1,4,0];
     var special_ingredient = special_ingredient_map[random];
     $(".randomsprite").addClass(stringnum);
     return special_ingredient;
@@ -54,13 +54,12 @@ function merge(obj1, obj2) {
 }
 
 
-
-
 var whackacake = function all() {
+    var $g = this;
     my = {};
     my.config = {
         spawnProbability:3/100,
-        gameTime:60,
+        gameTime:61,
         ingredientStaysTimeRandom:50,
         ingredientstaysTimeConstant:500,
         goodScore:100,
@@ -97,6 +96,7 @@ var whackacake = function all() {
         my.canvas.setAttribute("style", style + "; height:" + screenHeight + "; width:" + screenWidth + ";");
         my.canvas_cake_stack.setAttribute("style", style + "; height:" + screenHeight + "; width:" + cakeStackWidth + ";");
 
+
         my.canvas.height = screenHeight;
         my.canvas.width = screenWidth;
         my.canvas.x = findPosition(my.canvas)[0];
@@ -119,6 +119,7 @@ var whackacake = function all() {
 							   my.isRunningOnAndroid = true;
 							}
 
+            $g.loadSounds();
     }
 
     my.start = function(){
@@ -136,7 +137,7 @@ var whackacake = function all() {
         $('#canvas_wp').show();
         my.game = new Game(special_ingredient);
         my.game.init();
-        my.game.sounds.music.play();
+        $g.sounds.music.play();
         my.loop = setInterval("my.game.loop()", my.game.loopInterval);
     }
 
@@ -182,6 +183,57 @@ var whackacake = function all() {
       }
       return cursor;
     }
+    
+    
+    $g.loadSounds = function() {
+        // 5UP3R 1337 C0D3
+    
+        $g.sounds = {}
+
+        var addSound = function(src) {
+            var aud = document.createElement("audio");
+            // Set source files for audio
+            [".mp3", ".ogg"].forEach(function(ext) {
+                var src_el = document.createElement("source");
+                src_el.setAttribute("src", src+ext);
+                aud.appendChild(src_el);
+            });
+            aud.addEventListener('ended', function() {
+                this.currentTime=0;
+                this.pause();
+            });
+            
+            return aud;
+        }
+        $g.sounds.music = addSound("sound/whackacake");
+        $g.sounds.fanfare = addSound("sound/fanfare");
+        $g.sounds.music.load();
+        $g.sounds.music.addEventListener('loadeddata', function () {
+            // Loaded
+        });
+        
+        
+    }
+
+    
+    $g.setMusic = function(some_bool) {
+        if (some_bool) {
+            $g.sounds.music.volume = 1;
+        } else {
+            $g.sounds.music.volume = 0;
+        }    
+    }
+    
+    argh.toggleMusic = function() {
+        if ($g.sounds.music.volume < 0.5) {
+            $g.sounds.music.volume=1;
+            $(".btn_sound1").removeClass("btn_sound1_inactive");
+        } else if ($g.sounds.music.volume > 0.5) {
+            $g.sounds.music.volume=0;
+            $(".btn_sound1").addClass("btn_sound1_inactive");
+        }
+        return false;
+    }
 
     ///---------------- objects ----------------
 
@@ -196,7 +248,6 @@ var whackacake = function all() {
             $this.startTime = new Date().getTime();
             // 1 per second - Actually, this is the expectation of the number of ingredients that should spawn in a frame.
             my.frameCount = 0;
-            $this.loadSounds();
             $this.loadImages();
             $this.cakeStack = new my.CakeStack($this.images.cakeLayers);
             $this.cups = this.createCups();
@@ -368,55 +419,7 @@ var whackacake = function all() {
         }
         
         
-        this.loadSounds = function() {
-            // 5UP3R 1337 C0D3
-        
-            $this.sounds = {}
 
-            var addSound = function(src) {
-                $this.sounds.file_count++;
-                var aud = document.createElement("audio");
-                // Set source files for audio
-                [".mp3", ".ogg"].forEach(function(ext) {
-                    var src_el = document.createElement("source");
-                    src_el.setAttribute("src", src+ext);
-                    aud.appendChild(src_el);
-                });
-                aud.addEventListener('ended', function() {
-                    this.currentTime=0;
-                    this.pause();
-                });
-                
-                return aud;
-            }
-            $this.sounds.music = addSound("sound/whackacake");
-            $this.sounds.music.load();
-            $this.sounds.music.addEventListener('loadeddata', function () {
-                // Loaded
-            });
-            
-            
-        }
-        
-        this.setMusic = function(some_bool) {
-            if (some_bool) {
-                my.game.sounds.music.volume = 1;
-            } else {
-                my.game.sounds.music.volume = 0;
-            }    
-        }
-        
-        this.toggleMusic = function() {
-            // DONT F**K AROUND
-            if (my.game.sounds.music.volume < 0.5) {
-                my.game.sounds.music.volume=1;
-                $(".btn_sound1").removeClass("btn_sound1_inactive");
-            } else if (my.game.sounds.music.volume > 0.5) {
-                my.game.sounds.music.volume=0;
-                $(".btn_sound1").addClass("btn_sound1_inactive");
-            }
-            return false;
-        }
 
         this.incrementCakes = function() {
             $this.cakesFinished++;
@@ -497,7 +500,8 @@ var whackacake = function all() {
 							* my.game.sounds.music.currentTime = 0 was throwing an error on  iOS.
 						**/
 		
-            my.game.sounds.music.pause();
+            $g.sounds.music.pause();
+            $g.sounds.fanfare.play();
             
             var oldScore = $this.score;
             if ($this.cakesFinished > 0) {
@@ -512,3 +516,5 @@ var whackacake = function all() {
     return my;
 
 }();
+
+
