@@ -7,6 +7,17 @@
 <!--[if IE]><style type="text/css">.clearfix{zoom:1; display:block;}</style><![endif]-->
 <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+
+    <script>
+    var random = Math.floor(Math.random()*6);
+    random = random + 1;
+    var stringnum = "rs" + random;
+    
+    $(document).ready(function() {
+    $(".randomsprite").addClass(stringnum);
+    console.log(random);
+    });
+    </script>
 </head>
 
 <body>
@@ -14,12 +25,12 @@
 <div id="main_game_wp">
 	
   <ul class="second_nav">
-  	<li><a class="a1_home" href="#" title="Home">Home</a></li>
-    <li><a class="a1_about" href="#" title="About Us">About Us</a></li>
-    <li><a class="a1_press" href="#" title="Press">Press</a></li>
-    <li><a class="a1_blog" href="#" title="Blog">Blog</a></li>
-    <li><a class="a1_contact" href="#" title="Contact">Contact</a></li>
-    <li><a class="a1_donate" href="#" title="Donate">Donate</a></li>
+  	<li><a class="a1_home" href="/" title="Home">Home</a></li>
+    <li><a class="a1_about" href="/about.html" title="About Us">About Us</a></li>
+    <li><a class="a1_press" href="/press.html" title="Press">Press</a></li>
+    <li><a class="a1_blog" href="http://whackacake.tumblr.com" title="Blog">Blog</a></li>
+    <li><a class="a1_contact" href="/contact" title="Contact">Contact</a></li>
+    <li><a class="a1_donate" href="http://www.bbc.co.uk/pudsey/donate/" title="Donate">Donate</a></li>
   </ul>
   
   <ul class="game_controls clearfix">
@@ -29,15 +40,107 @@
   </ul>
   
   <div class="game_container">
-  	
+	
+    
     <div class="game_loading_wp">
+    <div class="randomspritecont">
+        <span class="randomsprite"></span>
     	<span class="ajax_loader">Loading...</span>
+    </div>
     </div><!--/.game_loading_wp-->
     
   </div><!--/.game_container-->
 
 </div><!--/#main_game_wp-->
 
+
+
+<div id="how-to-play-pop" class="def_modal_box" title="How To Play">
+
+	<div class="ui_modalBox_body">
+  	<img src="images/how_to_play.png" alt="" />
+  </div><!--/.ui_modalBox_body-->
+  
+</div><!--cart checkout popup -->
+
+<div id="high-scores-pop" class="def_modal_box" title="How To Play">
+
+	<div class="ui_modalBox_body">
+  	
+    <div class="score_table_wp">
+      <div class="inner_score_table_wp">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td><span class="txt_left">1. John Doe</span></td>
+            <td align="right"><span class="txt_right">200 points</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt_left">2. John Doe</span></td>
+            <td align="right"><span class="txt_right">200 points</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt_left">1. John Doe</span></td>
+            <td align="right"><span class="txt_right">200 points</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt_left">2. John Doe</span></td>
+            <td align="right"><span class="txt_right">200 points</span></td>
+          </tr>
+          <tr class="active_player">
+            <td><span class="txt_left">1. John Doe</span></td>
+            <td align="right"><span class="txt_right">200 points</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt_left">2. John Doe</span></td>
+            <td align="right"><span class="txt_right">200 points</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt_left">1. John Doe</span></td>
+            <td align="right"><span class="txt_right">200 points</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt_left">2. John Doe</span></td>
+            <td align="right"><span class="txt_right">200 points</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt_left">1. John Doe</span></td>
+            <td align="right"><span class="txt_right">200 points</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt_left">2. John Doe</span></td>
+            <td align="right"><span class="txt_right">200 points</span></td>
+          </tr>
+        </table>
+      </div><!--/.inner_score_table_wp-->
+    </div>
+    
+  </div><!--/.ui_modalBox_body-->
+  
+</div><!--cart checkout popup -->
+
+<script type="text/javascript">
+	$("#how-to-play-pop").dialog({
+		width:700,
+		modal: true,
+		autoOpen: false
+	});
+	$(".btn_how1").live("click", function(e) {
+		$("#how-to-play-pop").dialog("open");
+		e.preventDefault();
+	});
+	
+	
+	
+		$("#high-scores-pop").dialog({
+		width:480,
+		modal: true,
+		autoOpen: false
+	});
+	$(".btn_scores1").live("click", function(e) {
+		$("#high-scores-pop").dialog("open");
+		e.preventDefault();
+	});
+</script>
 
 </body>
 </html>
