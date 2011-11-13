@@ -117,9 +117,10 @@ objects = function(gameobj){
             var round_x = ~~ ($this.coord.x+0.5)
             var round_y = ~~ ($this.coord.y+0.5)
 						
-						if gameobj.game.isRunningOnIos {
+						if (gameobj.isRunningOnIos) {
 							ctx.font = "40pt MarkerFelt-Thin";
 	 					}
+	
 						else {
             	ctx.font = "40pt Comic Sans MS";
 						}
