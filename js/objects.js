@@ -24,11 +24,7 @@ objects = function(gameobj){
             var cakeLayerHeight = 50;
             var cakeLayerWidth = 100; // TODO
             var x = 75;
-            var y = gameobj.canvas_cake_stack.height - 95;
-            // ios must be 20px higher
-            if (gameobj.game.isRunningOnIos) {
-                y -= 20;
-            }
+            var y = gameobj.canvas_cake_stack.height - 118;
             y = y - cakeLayerHeightOverlay * $this.cakeSlices[gameobj.game.cakesFinished].length;
 
             var s = new gameobj.Sprite(

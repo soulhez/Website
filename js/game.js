@@ -98,7 +98,7 @@ var whackacake = function all() {
 				* Currently used to adjust animation duration
 				**/
 				
-				my.isRunningOnIos = false;
+				my.isRunningOnIos = true;
 				my.isRunningOnAndroid = false;
 				if (navigator.userAgent.match(/like Mac OS X/i)) {
 				   my.isRunningOnIos = true;
