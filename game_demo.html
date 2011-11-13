@@ -3,6 +3,7 @@
     <title>Whack a Cake - Children in Need</title>
     <script type="text/javascript" src="js/objects.js" charset="utf-8"></script>
     <script type="text/javascript" src="js/game.js" ></script>
+
     <script type="text/javascript">
         function buttonClicked(e){
             document.getElementById("startButton").disabled=true;
@@ -58,7 +59,7 @@
             border-top: 1px solid black;
             padding: 0;
             margin: 0;
-            background:url("images/background_left.png");
+            background:url("images/game/background_left.png");
             float:left;
         }
         #main_canvas {
@@ -67,36 +68,44 @@
             border-top: 1px solid black;
             padding: 0;
             margin: 0;
-            background:url("images/background_right.png");
+            background:url("images/game/background_right.png");
             float:left;
         }
-        
+        #game.cursor_up {
+            cursor: url("images/game/club_01.png");
+        }
+        #game.cursor_down {
+            cursor: url("images/game/empty_cursor.png");
+        }
+
     </style>
 </head>
 
 <body onload="whackacake.init({gameOverCallback:gameOver})">
-<div id='score_div' >
-    Score:<span id='game_score' >0</span>
-</div>
-<div id="cake_div">
-Cakes Made: <span id='cakes' >0</span>
-</div>
-<div id="time_div">
-Time: <span id='timer' >N/A</span>
-</div>
+<div id='game' class='cursor_up'>
+  
+  <div id='score_div' >
+      Score:<span id='game_score' >0</span>
+  </div>
+  <div id="cake_div">
+  Cakes Made: <span id='cakes' >0</span>
+  </div>
+  <div id="time_div">
+  Time: <span id='timer' >N/A</span>
+  </div>
+  <canvas id="cake_stack" >
+  </canvas>
 
-<canvas id="cake_stack" >
-</canvas>
-<canvas id="main_canvas">
-    <p>
-        sorry you need a modern browser
-    </p>
-</canvas>
+  <canvas id="main_canvas">
+      <p>
+          sorry you need a modern browser
+      </p>
+  </canvas>
 
-<div id="frame_div">
-Frames: <span id='frames' >0</span>
+  <div id="frame_div">
+  Frames: <span id='frames' >0</span>
+  </div>
 </div>
-
 <button id="startButton" type="button" onclick="buttonClicked()">Start</button>
 <form action="" method="get" accept-charset="utf-8">
     <ul style="list-style-type:none;">
