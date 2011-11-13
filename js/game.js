@@ -472,7 +472,10 @@ var whackacake = function all() {
         }
 
         this.gameOver = function() {
-            my.game.sounds.music.currentTime = 0;
+						/** 
+							* my.game.sounds.music.currentTime = 0 was throwing an error on  iOS.
+						**/
+		
             my.game.sounds.music.pause();
             
             var oldScore = $this.score;
