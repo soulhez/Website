@@ -399,7 +399,7 @@ objects = function(gameobj){
             this.wasHit = true;
             gameobj.game.cakeStack.addToCakeStack(type_no);
             if (type_no < 5) {
-                return gameobj.config.goodScore + $this.hitFastBonus();
+                return gameobj.config.goodScore;
             } else {
                 return gameobj.config.badScore; // + $this.hitFastBonus();
             }
