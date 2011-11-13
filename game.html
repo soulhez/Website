@@ -25,14 +25,21 @@
 <script type="text/javascript" src="js/game.js" ></script>
 
     <script>
-        var random = Math.floor(Math.random()*6);
-        random = random + 1;
-        var stringnum = "rs" + random;
+
 
         $(document).ready(function() {
-            $(".randomsprite").addClass(stringnum);
 
 
+            $.ajax({
+                  type: 'GET',
+                  url: 'http://api.whackacake.com/scores.json',
+                  success: function(result) {
+                    $('#highScoreTable').empty();
+                    $(result).each(function(index, score) {
+                        $('#highScoreTable').append('<tr><td><span class="txt_left">' + score.name + '</span></td><td align="right"><span class="txt_right">' + score.score + ' points</span></td></tr>');
+                    });
+                  }
+                });
 
             $('#score_submit').click(function() {
                 $.ajax({
@@ -45,6 +52,7 @@
                   success: function(result) {
                     console.log(result);
 
+                    $('#highScoreTable').empty();
                     $(result.results).each(function(index, score) {
                         $('#highScoreTable').append('<tr><td><span class="txt_left">' + score.name + '</span></td><td align="right"><span class="txt_right">' + score.score + ' points</span></td></tr>');
                     });
@@ -53,10 +61,9 @@
                   }
                 });
 
+
                 return false;
             });
-
-
 
             whackacake.init({gameOverCallback: function(score, cakes) {
 
@@ -85,7 +92,7 @@
 
             whackacake.start();
             
-            $('#loading').hide();
+            //$('#loading').hide();
 
             //debug
             //$('.canvas_wp').hide();
@@ -163,7 +170,7 @@
 
         }
         div#game.cursor_up {
-            cursor: url('images/game/club_01.png'), auto !important;
+            cursor: url('images/game/club_01.cur'), auto !important;
         }
         div#game.cursor_down {
            cursor: url('images/game/empty_cursor.cur'), auto !important;
@@ -251,7 +258,7 @@
       <span id="nr_score_total" class="nr_score_total"></span>
 
       <ul class="game_buttons">
-      	<li><a class="btn_play_again" href="/game.html" title="Play Again">Play Again</a></li>
+      	<li><a class="btn_play_again" title="Play Again">Play Again</a></li>
         <li><a class="btn_donate" target="_blank" href="http://www.bbc.co.uk/pudsey/donate/" title="Donate">Donate</a></li>
       </ul>
 
@@ -351,7 +358,6 @@
 	
 	$(".btn_play_again").live("click", function(e) {
 	    $(".your_score_wp").hide();
-        $('.canvas_wp').show();
         whackacake.start(); //
         
 	})
