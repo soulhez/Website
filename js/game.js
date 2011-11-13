@@ -56,7 +56,7 @@ var whackacake = function all() {
         badScore:-100,
         numLayersPerCake:10,
         
-        gameOverCallback:function(score){}
+        gameOverCallback:function(score, cakes){}
     };
 
     /*my.init = function() {

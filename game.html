@@ -33,15 +33,36 @@
             $(".randomsprite").addClass(stringnum);
             
             whackacake.init({gameOverCallback: function(score, cakes) {
+
+
+                $('.nr_score').html(score);
+                $('.nr_complete_cakes').html( 'x' + cakes);
+                $('.nr_score_total').html(cakes * score);
+
                 $('.canvas_wp').hide();
                 $('.your_score_wp').show();
-                console.log(score);
-                console.log(cakes);
+                
             }});
 
-            whackacake.start();
+
+            $('#userName').focus(function() {
+               $(this).val('');
+            });
+
+            $('#userName').blur(function() {
+               if ($(this).val() == '') {
+                    $(this).val('Your Name');
+               }
+            });
+
+
+            //whackacake.start();
             
             $('#loading').hide();
+
+            //debug
+            //$('.canvas_wp').hide();
+            //$('.your_score_wp').show();
 
         });
 
@@ -189,13 +210,13 @@
   	<div style="display:none;" class="your_score_wp">
 
       <div class="submit_name_wp clearfix">
-      	<input class="input_txt" type="text" value="Your Name" />
+      	<input id="userName" class="input_txt" type="text" value="Your Name" />
         <input class="input_submit" type="submit" value="" />
       </div>
 
-      <span class="nr_score">300</span>
-      <span class="nr_complete_cakes">x4</span>
-      <span class="nr_score_total">1200</span>
+      <span class="nr_score"></span>
+      <span class="nr_complete_cakes"></span>
+      <span class="nr_score_total"></span>
 
       <ul class="game_buttons">
       	<li><a class="btn_play_again" href="#" title="Play Again">Play Again</a></li>
