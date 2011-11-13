@@ -463,14 +463,17 @@ var whackacake = function all() {
         }
 
         this.gameOver = function() {
-            my.game.sounds.music.currentTime = 0;
+						/** 
+							* my.game.sounds.music.currentTime = 0 was throwing an error on  iOS.
+						**/
+		
             my.game.sounds.music.pause();
             
-            var oldScore = $this.score;
-            if ($this.cakesFinished > 0) {
-                $this.score = $this.score * $this.cakesFinished
-            }
-            my.config.gameOverCallback($this.score, $this.cakesFinished);
+                       var oldScore = $this.score;
+                         if ($this.cakesFinished > 0) {
+                             $this.score = $this.score * $this.cakesFinished
+                       }
+                       my.config.gameOverCallback($this.score, $this.cakesFinished);
         }
     }
 
