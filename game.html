@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -7,6 +9,47 @@
 <!--[if IE]><style type="text/css">.clearfix{zoom:1; display:block;}</style><![endif]-->
 <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+
+    <script>
+        var random = Math.floor(Math.random()*6);
+        random = random + 1;
+        var stringnum = "rs" + random;
+
+        $(document).ready(function() {
+            $(".randomsprite").addClass(stringnum);
+            console.log(random);
+        });
+
+
+
+
+        function buttonClicked(e){
+            document.getElementById("startButton").disabled=true;
+            spawnProbt = document.getElementById("spawnProbText").value;
+            
+            if(spawnProbt != ""){
+                whackacake.setSpawnProb(eval(spawnProbt));
+            }
+            
+            whackacake.start();
+
+            goodScore = document.getElementById("goodScoreText").value;
+            if(goodScore != ""){
+                whackacake.setGoodScore(eval(goodScore));
+            }
+
+            badScore = document.getElementById("badScoreText").value;
+            if(badScore != ""){
+                whackacake.setBadScore(eval(badScore));
+            }
+        };
+
+        function gameOver(score){
+            document.getElementById("startButton").disabled = false;
+        }
+    </script>
+
+
 </head>
 
 <body>
@@ -29,6 +72,14 @@
   </ul>
   
   <div class="game_container">
+
+
+    <div class="game_loading_wp">
+    <div class="randomspritecont">
+        <span class="randomsprite"></span>
+    	<span class="ajax_loader">Loading...</span>
+    </div>
+    </div><!--/.game_loading_wp-->
   	
     <div class="canvas_wp">
     	<!--canvas code-->
@@ -127,108 +178,3 @@
 
 </body>
 </html>
-<!---
-        ============================================
-
-        Start of Alex Goods index.html
-
-        ============================================
-
-<html>
-<head>
-    <title>Whack a Cake - Children in Need</title>
-    <script type="text/javascript" src="objects.js" charset="utf-8"></script>
-    <script type="text/javascript" src="game.js" ></script>
-    <script type="text/javascript">
-        function buttonClicked(e){
-            document.getElementById("startButton").disabled=true;
-            spawnProbt = document.getElementById("spawnProbText").value
-            if(spawnProbt != ""){
-                whackacake.setSpawnProb(eval(spawnProbt));
-            }
-            whackacake.start();
-        };
-        function gameOver(score){
-            document.getElementById("startButton").disabled = false;
-        }
-    </script>
-
-    <style>
-        #score_div{
-            color: #222;
-            font-size: 20pt;
-            text-shadow: 0px 2px 3px #555;
-            position:absolute;
-            left:680px;
-            top:20px;
-        }
-        #cake_div {
-            color: #222;
-            font-size: 20pt;
-            text-shadow: 0px 2px 3px #555;
-            position:absolute;
-            left:130px;
-            top:20px;
-        }
-        #time_div {
-            color: #222;
-            font-size: 20pt;
-            text-shadow: 0px 2px 3px #555;
-            position:absolute;
-            left:400px;
-            top:20px;
-        }
-        #cake_stack {
-            border-bottom: 1px solid black;
-            border-left: 1px solid black;
-            border-top: 1px solid black;
-            padding: 0;
-            margin: 0;
-            background:url("/images/game/background_left.png");
-            float:left;
-        }
-        #main_canvas {
-            border-bottom: 1px solid black;
-            border-right: 1px solid black;
-            border-top: 1px solid black;
-            padding: 0;
-            margin: 0;
-            background:url("images/game/background_right.png");
-            float:left;
-        }
-
-    </style>
-</head>
-
-<body onload="whackacake.init({gameOverCallback:gameOver})">
-<div id='score_div' >
-    Score:<span id='game_score' >0</span>
-</div>
-<div id="cake_div">
-Cakes Made: <span id='cakes' >0</span>
-</div>
-<div id="time_div">
-Time: <span id='timer' >N/A</span>
-</div>
-
-<canvas id="cake_stack" >
-</canvas>
-<canvas id="main_canvas">
-    <p>
-        sorry you need a modern browser
-    </p>
-</canvas>
-
-<div id="frame_div">
-Frames: <span id='frames' >0</span>
-</div>
-
-<button id="startButton" type="button" onclick="buttonClicked()">Start</button>
-<form action="" method="get" accept-charset="utf-8">
-    <label for="spawnProbText">Spawn probability: </label>
-    <input name="spawProbText" id="spawnProbText" />
-</form>
-
-</body>
-</html>
---->
