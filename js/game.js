@@ -214,8 +214,15 @@ var whackacake = function all() {
         }
 
         this.updateState = function(){
-
-            if (Math.random() < my.config.spawnProbability) {
+					
+						var n_ing = 0;
+	           $this.cups.forEach(function(c) {
+							if (c.hasIngredient()) {
+								n_ing++;
+							}
+							});
+							
+            if (Math.random() < my.config.spawnProbability || n_ing==0) {
                 var cup = $this.getRandomCup()
                     if (!cup.hasIngredient()) {
                         cup.setIngredient(this.getRandomIngredient()); // Choose a random ingredient
@@ -265,7 +272,7 @@ var whackacake = function all() {
         this.canvasPressed = function(x,y) {        
             var i;
             for (i = 0; i < $this.cups.length; i++) {
-                if ($this.cups[i].sprite.isClickedOn(x, y) && $this.cups[i].hasIngredient()) {
+                if ($this.cups[i].hasIngredient() && $this.cups[i].ingredient.sprite.isClickedOn(x, y)) {
                     $this.clickedIngredient($this.cups[i], x, y);
                 }
             }
@@ -397,7 +404,9 @@ var whackacake = function all() {
             }
             $this.cursor.draw($this.ctx);
             $this.ctx_cake_stack.clearRect(0, 0, my.canvas_cake_stack.width, my.canvas_cake_stack.height);
-            $this.ctx.font = "40pt ARia";
+            $this.ctx.font = "20pt Arial";
+						$this.ctx.fontColor = "#FFF";
+            
             for (i = 0; i < $this.animatedText.length; i++) {
                 $this.animatedText[i].draw($this.ctx);
             }
