@@ -120,6 +120,8 @@ button{ border:none; cursor:pointer; background:none;}
 .panel_score_listing { position:absolute; top:38px; left:25px; width:134px; height:85px; color:#FFF0AA; font-weight:bold;}
 .panel_score_listing li { display:block; padding:5px 0; border-bottom:1px dashed #acd799;}
 
+.available_wp { position:absolute; bottom:0; right:0; width:574px; height:79px; background:url(images/available_on.png) no-repeat 0 0;}
+
 
 /************************************************************
 * Game page
@@ -168,7 +170,7 @@ button{ border:none; cursor:pointer; background:none;}
 
 .canvas_wp { width:800px; height:500px; margin:0 auto;}
 .game_loading_wp { position:relative; width:800px; height:500px; margin:0 auto; background:url(images/game_loading_wp.png) no-repeat 0 0;}
-.ajax_loader { position:absolute; top:250px; left:50%; margin-left:-21px; width:42px; height:42px; display:block; text-indent:-9999px; overflow:hidden; background:url(images/loader.gif) no-repeat 0 0;}
+.ajax_loader { position:absolute; top:450px; left:5%; margin-left:-21px; width:42px; height:42px; display:block; text-indent:-9999px; overflow:hidden; background:url(images/loader.gif) no-repeat 0 0;}
 
 
 .your_score_wp { position:relative; width:800px; height:500px; margin:auto; background:url(images/congrats_bg.png) no-repeat 0 0;}
@@ -229,7 +231,7 @@ button{ border:none; cursor:pointer; background:none;}
 #footer { position:relative; width:900px; height:50px; padding:0 23px; margin:0 auto 20px; font-size:11px; font-weight:bold; text-shadow:0 1px 0 #c50700; background:url(images/footer_bg.png) no-repeat 0 0;}
 #footer a { color:#f1f1f1;}
 
-.copyright { display:block; float:left; width:auto; color:#f1f1f1; line-height:46px; font-weight:normal;}
+.copyright { display:block; float:left; width:auto; color:#f1f1f1; line-height:46px; font-weight:normal; position:absolute; z-index:500;}
 .copyright a { text-decoration:underline; font-weight:bold;}
 .copyright a:hover { text-decoration:none;}
 
@@ -285,6 +287,51 @@ button{ border:none; cursor:pointer; background:none;}
 .txt_left { padding-left:6px;}
 .txt_right { padding-right:10px;}
 
+/************************************************************
+* Loading Page
+************************************************************/
 
+.randomspritecont {
+height: 495px;
+width: 800px;
+position: absolute;
+display: block;
+overflow: hidden;
+margin: 0px auto;
+}
+
+.randomsprite {
+width: 738px;
+height: 500px;
+background-image: url('images/character_splash_sprite_738px.png');
+display: block;
+background-repeat: no-repeat;
+height: 590px;
+margin-left: 50px;
+}
+
+.rs1 {
+background-position: 0px 10px;
+}
+
+.rs2 {
+background-position: 0px -490px;
+}
+
+.rs3 {
+background-position: 0px -981px;
+}
+
+.rs4 {
+background-position: 0px -1474px;
+}
+
+.rs5 {
+background-position: 0px -1967px;
+}
+
+.rs6 {
+background-position: 0px -2460px;
+}
 
 
