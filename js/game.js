@@ -213,8 +213,15 @@ var whackacake = function all() {
         }
 
         this.updateState = function(){
-
-            if (Math.random() < my.config.spawnProbability) {
+					
+						var n_ing = 0;
+	           $this.cups.forEach(function(c) {
+							if (c.hasIngredient()) {
+								n_ing++;
+							}
+							});
+							
+            if (Math.random() < my.config.spawnProbability || n_ing==0) {
                 var cup = $this.getRandomCup()
                     if (!cup.hasIngredient()) {
                         cup.setIngredient(this.getRandomIngredient()); // Choose a random ingredient
