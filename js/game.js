@@ -253,8 +253,10 @@ var whackacake = function all() {
                 var e = event;
             }
             e.preventDefault();
-            touchX = e.targetTouches[0].pageX - my.canvas.offsetLeft;
-            touchY = e.targetTouches[0].pageY - my.canvas.offsetTop;
+						var position = $('#main_canvas').offset();
+            
+            touchX = e.targetTouches[0].pageX - position.left;
+            touchY = e.targetTouches[0].pageY - position.top;
 
             $this.canvasPressed(touchX,touchY);
 
