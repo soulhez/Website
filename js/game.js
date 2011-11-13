@@ -303,7 +303,7 @@ var whackacake = function all() {
                 scoreMessage = "+"+scoreToAdd;
             } else {
                 innerColor = 'brown';
-                outerColor = 'green';
+                outerColor = 'white';
                 scoreMessage = scoreToAdd;
             }
             
