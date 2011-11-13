@@ -22,6 +22,7 @@
             
             whackacake.init();
             whackacake.start();
+            
             $('#loading').hide();
 
         });
@@ -53,8 +54,8 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:680px;
-            top:20px;
+            left:650px;
+            top:40px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
 
         }
@@ -62,8 +63,8 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:130px;
-            top:20px;
+            left:220px;
+            top:40px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
 
         }
@@ -71,15 +72,15 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:400px;
-            top:20px;
+            left:460px;
+            top:40px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
 
         }
         #cake_stack {
-            border-bottom: 1px solid black;
-            border-left: 1px solid black;
-            border-top: 1px solid black;
+            //border-bottom: 1px solid black;
+            //border-left: 1px solid black;
+            //border-top: 1px solid black;
             padding: 0;
             margin: 0;
             background:url("images/game/background_left.png");
@@ -88,9 +89,9 @@
 
         }
         #main_canvas {
-            border-bottom: 1px solid black;
-            border-right: 1px solid black;
-            border-top: 1px solid black;
+            //border-bottom: 1px solid black;
+            //border-right: 1px solid black;
+            //border-top: 1px solid black;
             padding: 0;
             margin: 0;
             background:url("images/game/background_right.png");
@@ -138,32 +139,36 @@
     	<span class="ajax_loader">Loading...</span>
     </div>
     </div><!--/.game_loading_wp-->
-  	
+
+    <div class="canvas_wp">
+
     <div id='game' class='cursor_up'>
 
-  <div id='score_div' >
-      Score:<span id='game_score' >0</span>
-  </div>
-  <div id="cake_div">
-  Cakes Made: <span id='cakes' >0</span>
-  </div>
-  <div id="time_div">
-  Time: <span id='timer' >N/A</span>
-  </div>
-  <canvas id="cake_stack" >
-  </canvas>
+          <div id='score_div' >
+              Score:<span id='game_score' >0</span>
+          </div>
+          <div id="cake_div">
+            Cakes Made: <span id='cakes' >0</span>
+          </div>
+          <div id="time_div">
+            Time: <span id='timer' >N/A</span>
+          </div>
+          <canvas id="cake_stack" >
+          </canvas>
 
-  <canvas id="main_canvas">
-      <p>
-          Sorry, you need an HTML5 enabled browser to play this game :( <br>
-          Please check out <a href="http://chrome.google.com">Google Chrome.</a>
-      </p>
-  </canvas>
+          <canvas id="main_canvas">
+              <p>
+                  Sorry, you need an HTML5 enabled browser to play this game :( <br>
+                  Please check out <a href="http://chrome.google.com">Google Chrome.</a>
+              </p>
+          </canvas>
 
-  <div style="hidden" id="frame_div">
-  Frames: <span id='frames' >0</span>
+          <div style="visibility: hidden;" id="frame_div">
+          Frames: <span id='frames' >0</span>
+          </div>
+
+    </div>
   </div>
-</div>
     
   </div><!--/.game_container-->
 
