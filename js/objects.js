@@ -386,10 +386,8 @@ objects = function(gameobj){
             this.wasHit = true;
             gameobj.game.cakeStack.addToCakeStack(type_no);
             if (type_no < 5) {
-                gameobj.game.sounds.good_hit.play();
                 return gameobj.config.goodScore + $this.hitFastBonus();
             } else {
-                gameobj.game.sounds.bad_hit.play();
                 return gameobj.config.badScore; // + $this.hitFastBonus();
             }
         }
