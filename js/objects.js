@@ -10,8 +10,8 @@ objects = function(gameobj){
 
         this.addToCakeStack = function(type) {
 
-            // If we have finished a cake - 5 cake slices
-            if ($this.cakeSlices[gameobj.game.cakesFinished].length == 5) {
+            // If we have finished a cake - 9 cake slices
+            if ($this.cakeSlices[gameobj.game.cakesFinished].length == 9) {
                 // slide cakes away
                 $this.slideAway($this.cakeSlices[gameobj.game.cakesFinished]);
 
