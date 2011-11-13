@@ -40,7 +40,7 @@
                   url: 'http://api.whackacake.com/scores.json',
                   data: {
                         name: $('#userName').val(),
-                        score: $('.nr_score_total').html()
+                        score: $('#nr_score_total').html()
                   },
                   success: function(result) {
                     console.log(result);
@@ -57,12 +57,12 @@
             whackacake.init({gameOverCallback: function(score, cakes) {
 
 
-                $('.nr_score').html(score);
-                $('.nr_complete_cakes').html( 'x' + cakes);
-                $('.nr_score_total').html(cakes * score);
+                $('#nr_score').html(score);
+                $('#nr_complete_cakes').html( 'x' + cakes);
+                $('#nr_score_total').html(cakes * score);
 
-                $('.canvas_wp').hide();
-                $('.your_score_wp').show();
+                $('#canvas_wp').hide();
+                $('#your_score_wp').show();
                 
             }
             });
@@ -198,7 +198,7 @@
     </div>
     </div><!--/.game_loading_wp-->
 
-    <div class="canvas_wp">
+    <div id="canvas_wp class="canvas_wp">
 
     <div id='game' class='cursor_up'>
 
@@ -229,16 +229,16 @@
   </div>
 
 
-  	<div style="display:none;" class="your_score_wp">
+  	<div style="display:none;" id="your_score_wp" class="your_score_wp">
 
       <div class="submit_name_wp clearfix">
       	<input id="userName" class="input_txt" type="text" value="Your Name" />
         <span id="score_submit" class="input_submit"></span>
       </div>
 
-      <span class="nr_score"></span>
-      <span class="nr_complete_cakes"></span>
-      <span class="nr_score_total"></span>
+      <span id="nr_score" class="nr_score"></span>
+      <span id="nr_complete_cakes" class="nr_complete_cakes"></span>
+      <span id="nr_score_total" class="nr_score_total"></span>
 
       <ul class="game_buttons">
       	<li><a class="btn_play_again" href="/game.html" title="Play Again">Play Again</a></li>
