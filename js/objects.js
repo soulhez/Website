@@ -116,8 +116,15 @@ objects = function(gameobj){
 
             var round_x = ~~ ($this.coord.x+0.5)
             var round_y = ~~ ($this.coord.y+0.5)
-
-            ctx.font = "40pt MarkerFelt-Thin; 40pt Comic Sans MS";
+						
+						if (gameobj.isRunningOnIos) {
+							ctx.font = "40pt MarkerFelt-Thin";
+	 					}
+	
+						else {
+            	ctx.font = "40pt Comic Sans MS";
+						}
+						
             ctx.fillStyle = colorOuter;
             ctx.fillText($this.str, round_x, round_y);
 
@@ -399,7 +406,7 @@ objects = function(gameobj){
             this.wasHit = true;
             gameobj.game.cakeStack.addToCakeStack(type_no);
             if (type_no < 5) {
-                return gameobj.config.goodScore + $this.hitFastBonus();
+                return gameobj.config.goodScore;
             } else {
                 return gameobj.config.badScore; // + $this.hitFastBonus();
             }

@@ -192,9 +192,9 @@ button{ border:none; cursor:pointer; background:none;}
 
 .input_submit { float:right; width:49px; height:21px; line-height:20px; border:0; cursor:pointer; background-color:transparent;}
 
-.nr_score { position:absolute; top:102px; left:590px; display:block; width:150px; height:50px; font:bold 46px/46px "Comic Sans MS", cursive; color:#f00;}
-.nr_complete_cakes { position:absolute; top:158px; left:626px; display:block; width:150px; height:30px; font:bold 30px/30px "Comic Sans MS", cursive; color:#f00;}
-.nr_score_total {position:absolute; top:215px; left:570px; display:block; width:150px; height:52px; font:bold 52px/52px "Comic Sans MS", cursive; color:#f00; text-decoration:underline;}
+.nr_score { position:absolute; top:102px; left:590px; display:block; width:150px; height:50px; font:bold 46px/46px "Comic Sans MS", MarkerFelt-Thin, cursive; color:#f00;}
+.nr_complete_cakes { position:absolute; top:158px; left:626px; display:block; width:150px; height:30px; font:bold 30px/30px "Comic Sans MS" MarkerFelt-Thin, cursive; color:#f00;}
+.nr_score_total {position:absolute; top:215px; left:570px; display:block; width:150px; height:52px; font:bold 52px/52px "Comic Sans MS", MarkerFelt-Thin, cursive; color:#f00; text-decoration:underline;}
 
 .game_buttons { position:absolute; top:320px; left:450px; width:250px; height:140px; display:block;}
 .game_buttons li { padding-bottom:10px;}
