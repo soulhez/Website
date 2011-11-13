@@ -57,7 +57,7 @@
             });
 
 
-            whackacake.start(2);
+            whackacake.start();
             
             $('#loading').hide();
 
@@ -315,6 +315,15 @@
 		$("#high-scores-pop").dialog("open");
 		e.preventDefault();
 	});
+	
+	// Audio toggle defined in game.js - D1RtY h4xX - john
+	
+	$(".btn_play_again").live("click", function(e) {
+	    $(".your_score_wp").hide();
+        $('.canvas_wp').show();
+        whackacake.start(); //
+        
+	})
 </script>
 
 </body>

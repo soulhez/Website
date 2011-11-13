@@ -49,7 +49,7 @@ var whackacake = function all() {
     my = {};
     my.config = {
         spawnProbability:3/100,
-        gameTime:61,
+        gameTime:6,
         ingredientStaysTimeRandom:50,
         ingredientstaysTimeConstant:500,
         goodScore:100,
@@ -110,7 +110,9 @@ var whackacake = function all() {
 
     }
 
-    my.start = function(special_ingredient){
+    my.start = function(){
+        // Loading 
+        special_ingredient = 2
         my.game = new Game(special_ingredient);
         my.game.init();
         my.game.sounds.music.play();
