@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +7,20 @@
 <!--[if IE]><style type="text/css">.clearfix{zoom:1; display:block;}</style><![endif]-->
 <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26998972-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 <script type="text/javascript" src="js/objects.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/game.js" ></script>
 
@@ -20,10 +32,37 @@
         $(document).ready(function() {
             $(".randomsprite").addClass(stringnum);
             
-            whackacake.init();
-            whackacake.start();
+            whackacake.init({gameOverCallback: function(score, cakes) {
+
+
+                $('.nr_score').html(score);
+                $('.nr_complete_cakes').html( 'x' + cakes);
+                $('.nr_score_total').html(cakes * score);
+
+                $('.canvas_wp').hide();
+                $('.your_score_wp').show();
+                
+            }});
+
+
+            $('#userName').focus(function() {
+               $(this).val('');
+            });
+
+            $('#userName').blur(function() {
+               if ($(this).val() == '') {
+                    $(this).val('Your Name');
+               }
+            });
+
+
+            //whackacake.start();
             
             $('#loading').hide();
+
+            //debug
+            //$('.canvas_wp').hide();
+            //$('.your_score_wp').show();
 
         });
 
@@ -43,9 +82,7 @@
             }
         };
 
-        function gameOver(score){
-            document.getElementById("startButton").disabled = false;
-        }
+
     </script>
 
 
@@ -108,7 +145,6 @@
 
     </style>
 
-
 </head>
 
 <body>
@@ -169,6 +205,25 @@
 
     </div>
   </div>
+
+
+  	<div style="display:none;" class="your_score_wp">
+
+      <div class="submit_name_wp clearfix">
+      	<input id="userName" class="input_txt" type="text" value="Your Name" />
+        <input class="input_submit" type="submit" value="" />
+      </div>
+
+      <span class="nr_score"></span>
+      <span class="nr_complete_cakes"></span>
+      <span class="nr_score_total"></span>
+
+      <ul class="game_buttons">
+      	<li><a class="btn_play_again" href="#" title="Play Again">Play Again</a></li>
+        <li><a class="btn_donate" href="#" title="Donate">Donate</a></li>
+      </ul>
+
+    </div><!--/.your_score_wp-->
     
   </div><!--/.game_container-->
 
