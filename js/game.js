@@ -98,7 +98,7 @@ var whackacake = function all() {
 				* Currently used to adjust animation duration
 				**/
 				
-				my.isRunningOnIos = false;
+				my.isRunningOnIos = true;
 				my.isRunningOnAndroid = false;
 				if (navigator.userAgent.match(/like Mac OS X/i)) {
 				   my.isRunningOnIos = true;
@@ -135,7 +135,7 @@ var whackacake = function all() {
 
     my.getDurationInFrames = function(milliseconds){
 		if (my.isRunningOnIos)
-        return milliseconds / my.game.loopInterval/2;
+        return milliseconds / my.game.loopInterval/3;
 		else if (my.isRunningOnAndroid)
 			return milliseconds/my.game.loopInterval/5;
 		else
@@ -330,8 +330,7 @@ var whackacake = function all() {
             // 5UP3R 1337 C0D3
         
             $this.sounds = {}
-            $this.sounds.file_count = 0;
-            $this.sounds.loaded_count = 0;
+
             var addSound = function(src) {
                 $this.sounds.file_count++;
                 var aud = document.createElement("audio");
@@ -341,7 +340,6 @@ var whackacake = function all() {
                     src_el.setAttribute("src", src+ext);
                     aud.appendChild(src_el);
                 });
-                aud.load();
                 aud.addEventListener('ended', function() {
                     this.currentTime=0;
                     this.pause();
@@ -350,14 +348,11 @@ var whackacake = function all() {
                 return aud;
             }
             $this.sounds.music = addSound("sound/whackacake");
-            $this.sounds.music.addEventListener('load', function () {
-                alert("Game music loaded.");
-            })
+            $this.sounds.music.load();
+            $this.sounds.music.addEventListener('loadeddata', function () {
+                // Loaded
+            });
             
-         
-            $this.sounds.isReady = function() {
-                return this.loaded_count == this.file_count;
-            }
             
         }
 
@@ -391,7 +386,12 @@ var whackacake = function all() {
         }
 
         this.getRandomIngredient = function() {
-            return new my.Ingredient(Math.floor(Math.random()*10));
+            // 50% chance of only a good ingredient:
+            if (Math.random() < 0.5) {
+                return new my.Ingredient(Math.floor(Math.random()*5));
+            } else {
+                return new my.Ingredient(Math.floor(Math.random()*10));
+            }
         }
 
 
