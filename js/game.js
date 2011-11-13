@@ -239,10 +239,9 @@ var whackacake = function all() {
         this.mouseDown = function(e) {
             var mousePosition = my.getMousePosition(e);
             console.log(e);
-            var mouseX = mousePosition.x;
-            var mouseY = mousePosition.y;
-            mouseX -= my.canvas.offsetLeft;
-            mouseY -= my.canvas.offsetTop;
+            var position = $('#main_canvas').offset();
+            mouseX = mousePosition.x - position.left;
+            mouseY = mousePosition.y - position.top;
             console.log(mouseX);
             console.log(mouseY);
             $this.cursor.down()
