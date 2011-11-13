@@ -9,6 +9,8 @@
 <!--[if IE]><style type="text/css">.clearfix{zoom:1; display:block;}</style><![endif]-->
 <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="js/objects.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/game.js" ></script>
 
     <script>
         var random = Math.floor(Math.random()*6);
@@ -17,21 +19,17 @@
 
         $(document).ready(function() {
             $(".randomsprite").addClass(stringnum);
-            console.log(random);
+            
+            whackacake.init();
+            whackacake.start();
+            $('#loading').hide();
+
         });
 
 
 
 
         function buttonClicked(e){
-            document.getElementById("startButton").disabled=true;
-            spawnProbt = document.getElementById("spawnProbText").value;
-            
-            if(spawnProbt != ""){
-                whackacake.setSpawnProb(eval(spawnProbt));
-            }
-            
-            whackacake.start();
 
             goodScore = document.getElementById("goodScoreText").value;
             if(goodScore != ""){
@@ -74,7 +72,7 @@
   <div class="game_container">
 
 
-    <div class="game_loading_wp">
+    <div id="loading" class="game_loading_wp">
     <div class="randomspritecont">
         <span class="randomsprite"></span>
     	<span class="ajax_loader">Loading...</span>
