@@ -29,6 +29,18 @@
 
         $(document).ready(function() {
 
+
+            $.ajax({
+                  type: 'GET',
+                  url: 'http://api.whackacake.com/scores.json',
+                  success: function(result) {
+                    $('#highScoreTable').empty();
+                    $(result).each(function(index, score) {
+                        $('#highScoreTable').append('<tr><td><span class="txt_left">' + score.name + '</span></td><td align="right"><span class="txt_right">' + score.score + ' points</span></td></tr>');
+                    });
+                  }
+                });
+
             $('#score_submit').click(function() {
                 $.ajax({
                   type: 'POST',
@@ -40,6 +52,7 @@
                   success: function(result) {
                     console.log(result);
 
+                    $('#highScoreTable').empty();
                     $(result.results).each(function(index, score) {
                         $('#highScoreTable').append('<tr><td><span class="txt_left">' + score.name + '</span></td><td align="right"><span class="txt_right">' + score.score + ' points</span></td></tr>');
                     });
@@ -157,7 +170,7 @@
 
         }
         div#game.cursor_up {
-            cursor: url('images/game/club_01.png'), auto !important;
+            cursor: url('images/game/club_01.cur'), auto !important;
         }
         div#game.cursor_down {
            cursor: url('images/game/empty_cursor.cur'), auto !important;
