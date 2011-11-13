@@ -21,6 +21,111 @@
   })();
 
 </script>
+<script type="text/javascript" src="js/objects.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/game.js" ></script>
+
+    <script>
+        var random = Math.floor(Math.random()*6);
+        random = random + 1;
+        var stringnum = "rs" + random;
+
+        $(document).ready(function() {
+            $(".randomsprite").addClass(stringnum);
+            
+            whackacake.init({gameOverCallback: function(score, cakes) {
+                $('.canvas_wp').hide();
+                $('.your_score_wp').show();
+                console.log(score);
+                console.log(cakes);
+            }});
+
+            whackacake.start();
+            
+            $('#loading').hide();
+
+        });
+
+
+
+
+        function buttonClicked(e){
+
+            goodScore = document.getElementById("goodScoreText").value;
+            if(goodScore != ""){
+                whackacake.setGoodScore(eval(goodScore));
+            }
+
+            badScore = document.getElementById("badScoreText").value;
+            if(badScore != ""){
+                whackacake.setBadScore(eval(badScore));
+            }
+        };
+
+
+    </script>
+
+
+    <style>
+        #score_div{
+            color: #222;
+            font-size: 20pt;
+            position:absolute;
+            left:650px;
+            top:40px;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+
+        }
+        #cake_div {
+            color: #222;
+            font-size: 20pt;
+            position:absolute;
+            left:220px;
+            top:40px;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+
+        }
+        #time_div {
+            color: #222;
+            font-size: 20pt;
+            position:absolute;
+            left:460px;
+            top:40px;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+
+        }
+        #cake_stack {
+            //border-bottom: 1px solid black;
+            //border-left: 1px solid black;
+            //border-top: 1px solid black;
+            padding: 0;
+            margin: 0;
+            background:url("images/game/background_left.png");
+            float:left;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+
+        }
+        #main_canvas {
+            //border-bottom: 1px solid black;
+            //border-right: 1px solid black;
+            //border-top: 1px solid black;
+            padding: 0;
+            margin: 0;
+            background:url("images/game/background_right.png");
+            float:left;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+
+        }
+        #game.cursor_up {
+            cursor: url("images/game/club_01.png");
+        }
+        #game.cursor_down {
+            cursor: url("images/game/empty_cursor.png");
+        }
+
+    </style>
+
+
+>>>>>>> bumsex/master
 </head>
 
 <body>
@@ -43,10 +148,63 @@
   </ul>
   
   <div class="game_container">
-  	
-    <div class="canvas_wp">
-    	<!--canvas code-->
+
+
+    <div id="loading" class="game_loading_wp">
+    <div class="randomspritecont">
+        <span class="randomsprite"></span>
+    	<span class="ajax_loader">Loading...</span>
     </div>
+    </div><!--/.game_loading_wp-->
+
+    <div class="canvas_wp">
+
+    <div id='game' class='cursor_up'>
+
+          <div id='score_div' >
+              Score:<span id='game_score' >0</span>
+          </div>
+          <div id="cake_div">
+            Cakes Made: <span id='cakes' >0</span>
+          </div>
+          <div id="time_div">
+            Time: <span id='timer' >N/A</span>
+          </div>
+          <canvas id="cake_stack" >
+          </canvas>
+
+          <canvas id="main_canvas">
+              <p>
+                  Sorry, you need an HTML5 enabled browser to play this game :( <br>
+                  Please check out <a href="http://chrome.google.com">Google Chrome.</a>
+              </p>
+          </canvas>
+
+          <div style="visibility: hidden;" id="frame_div">
+          Frames: <span id='frames' >0</span>
+          </div>
+
+    </div>
+  </div>
+
+
+  	<div style="display:none;" class="your_score_wp">
+
+      <div class="submit_name_wp clearfix">
+      	<input class="input_txt" type="text" value="Your Name" />
+        <input class="input_submit" type="submit" value="" />
+      </div>
+
+      <span class="nr_score">300</span>
+      <span class="nr_complete_cakes">x4</span>
+      <span class="nr_score_total">1200</span>
+
+      <ul class="game_buttons">
+      	<li><a class="btn_play_again" href="#" title="Play Again">Play Again</a></li>
+        <li><a class="btn_donate" href="#" title="Donate">Donate</a></li>
+      </ul>
+
+    </div><!--/.your_score_wp-->
     
   </div><!--/.game_container-->
 
@@ -141,108 +299,3 @@
 
 </body>
 </html>
-<!---
-        ============================================
-
-        Start of Alex Goods index.html
-
-        ============================================
-
-<html>
-<head>
-    <title>Whack a Cake - Children in Need</title>
-    <script type="text/javascript" src="objects.js" charset="utf-8"></script>
-    <script type="text/javascript" src="game.js" ></script>
-    <script type="text/javascript">
-        function buttonClicked(e){
-            document.getElementById("startButton").disabled=true;
-            spawnProbt = document.getElementById("spawnProbText").value
-            if(spawnProbt != ""){
-                whackacake.setSpawnProb(eval(spawnProbt));
-            }
-            whackacake.start();
-        };
-        function gameOver(score){
-            document.getElementById("startButton").disabled = false;
-        }
-    </script>
-
-    <style>
-        #score_div{
-            color: #222;
-            font-size: 20pt;
-            text-shadow: 0px 2px 3px #555;
-            position:absolute;
-            left:680px;
-            top:20px;
-        }
-        #cake_div {
-            color: #222;
-            font-size: 20pt;
-            text-shadow: 0px 2px 3px #555;
-            position:absolute;
-            left:130px;
-            top:20px;
-        }
-        #time_div {
-            color: #222;
-            font-size: 20pt;
-            text-shadow: 0px 2px 3px #555;
-            position:absolute;
-            left:400px;
-            top:20px;
-        }
-        #cake_stack {
-            border-bottom: 1px solid black;
-            border-left: 1px solid black;
-            border-top: 1px solid black;
-            padding: 0;
-            margin: 0;
-            background:url("/images/game/background_left.png");
-            float:left;
-        }
-        #main_canvas {
-            border-bottom: 1px solid black;
-            border-right: 1px solid black;
-            border-top: 1px solid black;
-            padding: 0;
-            margin: 0;
-            background:url("images/game/background_right.png");
-            float:left;
-        }
-
-    </style>
-</head>
-
-<body onload="whackacake.init({gameOverCallback:gameOver})">
-<div id='score_div' >
-    Score:<span id='game_score' >0</span>
-</div>
-<div id="cake_div">
-Cakes Made: <span id='cakes' >0</span>
-</div>
-<div id="time_div">
-Time: <span id='timer' >N/A</span>
-</div>
-
-<canvas id="cake_stack" >
-</canvas>
-<canvas id="main_canvas">
-    <p>
-        sorry you need a modern browser
-    </p>
-</canvas>
-
-<div id="frame_div">
-Frames: <span id='frames' >0</span>
-</div>
-
-<button id="startButton" type="button" onclick="buttonClicked()">Start</button>
-<form action="" method="get" accept-charset="utf-8">
-    <label for="spawnProbText">Spawn probability: </label>
-    <input name="spawProbText" id="spawnProbText" />
-</form>
-
-</body>
-</html>
---->

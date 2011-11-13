@@ -1,7 +1,7 @@
 // http://www.tutorialspoint.com/javascript/array_foreach.htm
-if (!Object.prototype.forEach)
+/*if (!Object.prototype.forEach)
 {
-    Object.prototype.forEach = function(fun /*, thisp*/)
+    Object.prototype.forEach = function(fun /*, thisp*)
     {
         var len = this.length;
         if (typeof fun != "function")
@@ -14,7 +14,7 @@ if (!Object.prototype.forEach)
                 fun.call(thisp, this[i], i, this);
         }
     };
-}
+}*/
 
 /*
  * * Recursively merge properties of two objects 
@@ -238,10 +238,12 @@ var whackacake = function all() {
 
         this.mouseDown = function(e) {
             var mousePosition = my.getMousePosition(e);
-            var mouseX = mousePosition.x;
-            var mouseY = mousePosition.y;
-            mouseX -= my.canvas.offsetLeft;
-            mouseY -= my.canvas.offsetTop;
+            console.log(e);
+            var position = $('#main_canvas').offset();
+            mouseX = mousePosition.x - position.left;
+            mouseY = mousePosition.y - position.top;
+            console.log(mouseX);
+            console.log(mouseY);
             $this.cursor.down()
             $this.canvasPressed(mouseX, mouseY);
         }
@@ -251,8 +253,10 @@ var whackacake = function all() {
                 var e = event;
             }
             e.preventDefault();
-            touchX = e.targetTouches[0].pageX - my.canvas.offsetLeft;
-            touchY = e.targetTouches[0].pageY - my.canvas.offsetTop;
+						var position = $('#main_canvas').offset();
+            
+            touchX = e.targetTouches[0].pageX - position.left;
+            touchY = e.targetTouches[0].pageY - position.top;
 
             $this.canvasPressed(touchX,touchY);
 
@@ -438,7 +442,7 @@ var whackacake = function all() {
             if ($this.cakesFinished > 0) {
                 $this.score = $this.score * $this.cakesFinished
             }
-            my.config.gameOverCallback($this.score);
+            my.config.gameOverCallback($this.score, $this.cakesFinished);
         }
     }
 
