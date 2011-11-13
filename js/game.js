@@ -468,7 +468,7 @@ var whackacake = function all() {
             
             var oldScore = $this.score;
             if ($this.cakesFinished > 0) {
-                $this.score = $this.score * $this.cakesFinished
+                $this.score = $this.score;
             }
             my.config.gameOverCallback($this.score, $this.cakesFinished);
         }
