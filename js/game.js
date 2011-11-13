@@ -16,6 +16,17 @@
     };
 }*/
 
+
+getAndDrawRandomSpriteToLoadingScreen = function() {
+    // Created by Dan, Hacked to pieces by John
+    var random = Math.floor(Math.random()*6);
+    random = random + 1;
+    var stringnum = "rs" + random;
+    var special_ingredient_map = [undefined,0,1,2,3,4,1];
+    var special_ingredient = special_ingredient_map[random];
+    $(".randomsprite").addClass(stringnum);
+    return special_ingredient;
+}
 /*
  * * Recursively merge properties of two objects 
  * */
@@ -49,7 +60,7 @@ var whackacake = function all() {
     my = {};
     my.config = {
         spawnProbability:3/100,
-        gameTime:20,
+        gameTime:60,
         ingredientStaysTimeRandom:50,
         ingredientstaysTimeConstant:500,
         goodScore:100,
@@ -112,7 +123,17 @@ var whackacake = function all() {
 
     my.start = function(){
         // Loading 
-        special_ingredient = 2
+        
+        special_ingredient = getAndDrawRandomSpriteToLoadingScreen();
+        setTimeout("my.actuallyStart("+special_ingredient+")", 2000); //TODO 4
+        $(".game_loading_wp").show();
+        $('#canvas_wp').hide();
+
+    }
+    
+    my.actuallyStart = function(special_ingredient) {
+        $(".game_loading_wp").hide();
+        $('#canvas_wp').show();
         my.game = new Game(special_ingredient);
         my.game.init();
         my.game.sounds.music.play();

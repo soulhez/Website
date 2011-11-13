@@ -25,14 +25,9 @@
 <script type="text/javascript" src="js/game.js" ></script>
 
     <script>
-        var random = Math.floor(Math.random()*6);
-        random = random + 1;
-        var stringnum = "rs" + random;
+
 
         $(document).ready(function() {
-            $(".randomsprite").addClass(stringnum);
-
-
 
             $('#score_submit').click(function() {
                 $.ajax({
@@ -44,15 +39,18 @@
                   },
                   success: function(result) {
                     console.log(result);
+
+                    $(result.results).each(function(index, score) {
+                        $('#highScoreTable').append('<tr><td><span class="txt_left">' + score.name + '</span></td><td align="right"><span class="txt_right">' + score.score + ' points</span></td></tr>');
+                    });
+
+                    $("#high-scores-pop").dialog("open");
                   }
                 });
 
-                console.log()
 
                 return false;
             });
-
-
 
             whackacake.init({gameOverCallback: function(score, cakes) {
 
@@ -81,7 +79,7 @@
 
             whackacake.start();
             
-            $('#loading').hide();
+            //$('#loading').hide();
 
             //debug
             //$('.canvas_wp').hide();
@@ -237,7 +235,7 @@
 
   	<div style="display:none;" id="your_score_wp" class="your_score_wp">
 
-      <div class="submit_name_wp clearfix">
+      <div id="submitForm" class="submit_name_wp clearfix">
       	<input id="userName" class="input_txt" type="text" value="Your Name" />
         <span id="score_submit" class="input_submit"></span>
       </div>
@@ -247,7 +245,7 @@
       <span id="nr_score_total" class="nr_score_total"></span>
 
       <ul class="game_buttons">
-      	<li><a class="btn_play_again" href="/game.html" title="Play Again">Play Again</a></li>
+      	<li><a class="btn_play_again" title="Play Again">Play Again</a></li>
         <li><a class="btn_donate" target="_blank" href="http://www.bbc.co.uk/pudsey/donate/" title="Donate">Donate</a></li>
       </ul>
 
@@ -271,8 +269,8 @@
   	
     <div class="score_table_wp">
       <div class="inner_score_table_wp">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tr>
+        <table cellpadding="0" id="highScoreTable" cellspacing="0" border="0">
+          <!--<tr>
             <td><span class="txt_left">1. John Doe</span></td>
             <td align="right"><span class="txt_right">200 points</span></td>
           </tr>
@@ -311,7 +309,7 @@
           <tr>
             <td><span class="txt_left">2. John Doe</span></td>
             <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
+          </tr>-->
         </table>
       </div><!--/.inner_score_table_wp-->
     </div>
@@ -347,7 +345,6 @@
 	
 	$(".btn_play_again").live("click", function(e) {
 	    $(".your_score_wp").hide();
-        $('.canvas_wp').show();
         whackacake.start(); //
         
 	})
