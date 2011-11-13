@@ -37,8 +37,11 @@
             $('#score_submit').click(function() {
                 $.ajax({
                   type: 'POST',
-                  url: 'http://api.whackacake.com/scores',
-                  data: "name=" + $('#userName').val() + "&score=" + $('.nr_score_total').html(),
+                  url: 'http://api.whackacake.com/scores.json',
+                  data: {
+                        name: $('#userName').val(),
+                        score: $('.nr_score_total').html()
+                  },
                   success: function(result) {
                     console.log(result);
                   }
@@ -61,8 +64,7 @@
                 $('.canvas_wp').hide();
                 $('.your_score_wp').show();
                 
-            },
-            gameTime:10
+            }
             });
 
 
@@ -239,8 +241,8 @@
       <span class="nr_score_total"></span>
 
       <ul class="game_buttons">
-      	<li><a class="btn_play_again" href="#" title="Play Again">Play Again</a></li>
-        <li><a class="btn_donate" href="#" title="Donate">Donate</a></li>
+      	<li><a class="btn_play_again" href="/game.html" title="Play Again">Play Again</a></li>
+        <li><a class="btn_donate" target="_blank" href="http://www.bbc.co.uk/pudsey/donate/" title="Donate">Donate</a></li>
       </ul>
 
     </div><!--/.your_score_wp-->
