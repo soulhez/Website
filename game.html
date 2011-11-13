@@ -44,10 +44,14 @@
                   },
                   success: function(result) {
                     console.log(result);
+
+                    $(result.results).each(function(index, score) {
+                        $('#highScoreTable').append('<tr><td><span class="txt_left">' + score.name + '</span></td><td align="right"><span class="txt_right">' + score.score + ' points</span></td></tr>');
+                    });
+
+                    $("#high-scores-pop").dialog("open");
                   }
                 });
-
-                console.log()
 
                 return false;
             });
@@ -237,7 +241,7 @@
 
   	<div style="display:none;" id="your_score_wp" class="your_score_wp">
 
-      <div class="submit_name_wp clearfix">
+      <div id="submitForm" class="submit_name_wp clearfix">
       	<input id="userName" class="input_txt" type="text" value="Your Name" />
         <span id="score_submit" class="input_submit"></span>
       </div>
@@ -271,8 +275,8 @@
   	
     <div class="score_table_wp">
       <div class="inner_score_table_wp">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tr>
+        <table cellpadding="0" id="highScoreTable" cellspacing="0" border="0">
+          <!--<tr>
             <td><span class="txt_left">1. John Doe</span></td>
             <td align="right"><span class="txt_right">200 points</span></td>
           </tr>
@@ -311,7 +315,7 @@
           <tr>
             <td><span class="txt_left">2. John Doe</span></td>
             <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
+          </tr>-->
         </table>
       </div><!--/.inner_score_table_wp-->
     </div>
