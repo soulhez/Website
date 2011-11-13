@@ -192,7 +192,7 @@ var whackacake = function all() {
             $this.cursor = new my.Cursor(60, 62, $this.images.cursor_down);
             $this.background_left = new my.Background(my.canvas_cake_stack.width,my.canvas_cake_stack.height,$this.images.background_left);
             $this.background_right = new my.Background(my.canvas.width,my.canvas.height,$this.images.background_right);
-            my.canvas.addEventListener('click', $this.mouseDown,false);
+            my.gameDiv.addEventListener('click', $this.mouseDown,false);
             my.canvas.addEventListener("touchstart", $this.touchDown, false);
             my.canvas.addEventListener("touchmove", $this.touchMove, true);
             my.canvas.addEventListener("touchend", $this.touchUp, false);
