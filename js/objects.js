@@ -10,8 +10,8 @@ objects = function(gameobj){
 
         this.addToCakeStack = function(type) {
 
-            // If we have finished a cake - 9 cake slices
-            if ($this.cakeSlices[gameobj.game.cakesFinished].length == 9) {
+            // If we have finished a cake - 5 cake slices
+            if ($this.cakeSlices[gameobj.game.cakesFinished].length == gameobj.config.numLayersPerCake) {
                 // slide cakes away
                 $this.slideAway($this.cakeSlices[gameobj.game.cakesFinished]);
 
@@ -386,10 +386,8 @@ objects = function(gameobj){
             this.wasHit = true;
             gameobj.game.cakeStack.addToCakeStack(type_no);
             if (type_no < 5) {
-                gameobj.game.sounds.good_hit.play();
                 return gameobj.config.goodScore + $this.hitFastBonus();
             } else {
-                gameobj.game.sounds.bad_hit.play();
                 return gameobj.config.badScore; // + $this.hitFastBonus();
             }
         }
