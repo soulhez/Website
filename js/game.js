@@ -271,7 +271,7 @@ var whackacake = function all() {
         this.canvasPressed = function(x,y) {        
             var i;
             for (i = 0; i < $this.cups.length; i++) {
-                if ($this.cups[i].sprite.isClickedOn(x, y) && $this.cups[i].hasIngredient()) {
+                if ($this.cups[i].hasIngredient() && $this.cups[i].ingredient.sprite.isClickedOn(x, y)) {
                     $this.clickedIngredient($this.cups[i], x, y);
                 }
             }
