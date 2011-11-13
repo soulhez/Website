@@ -11,7 +11,7 @@ objects = function(gameobj){
         this.addToCakeStack = function(type) {
 
             // If we have finished a cake - 5 cake slices
-            if ($this.cakeSlices[gameobj.game.cakesFinished].length == 5) {
+            if ($this.cakeSlices[gameobj.game.cakesFinished].length == gameobj.config.numLayersPerCake) {
                 // slide cakes away
                 $this.slideAway($this.cakeSlices[gameobj.game.cakesFinished]);
 

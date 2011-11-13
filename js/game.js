@@ -54,6 +54,7 @@ var whackacake = function all() {
         ingredientstaysTimeConstant:250,
         goodScore:100,
         badScore:-100,
+        numLayersPerCake:5,
         
         gameOverCallback:function(score){}
     };
