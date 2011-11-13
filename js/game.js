@@ -253,8 +253,10 @@ var whackacake = function all() {
                 var e = event;
             }
             e.preventDefault();
-            touchX = e.targetTouches[0].pageX - my.canvas.offsetLeft;
-            touchY = e.targetTouches[0].pageY - my.canvas.offsetTop;
+						var position = $('#main_canvas').offset();
+            
+            touchX = e.targetTouches[0].pageX - position.left;
+            touchY = e.targetTouches[0].pageY - position.top;
 
             $this.canvasPressed(touchX,touchY);
 
@@ -440,7 +442,7 @@ var whackacake = function all() {
             if ($this.cakesFinished > 0) {
                 $this.score = $this.score * $this.cakesFinished
             }
-            my.config.gameOverCallback($this.score);
+            my.config.gameOverCallback($this.score, $this.cakesFinished);
         }
     }
 
