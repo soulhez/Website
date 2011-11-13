@@ -59,7 +59,7 @@ var whackacake = function all() {
     my = {};
     my.config = {
         spawnProbability:3/100,
-        gameTime:60,
+        gameTime:61,
         ingredientStaysTimeRandom:50,
         ingredientstaysTimeConstant:500,
         goodScore:100,
@@ -206,6 +206,7 @@ var whackacake = function all() {
             return aud;
         }
         $g.sounds.music = addSound("sound/whackacake");
+        $g.sounds.fanfare = addSound("sound/fanfare");
         $g.sounds.music.load();
         $g.sounds.music.addEventListener('loadeddata', function () {
             // Loaded
@@ -213,6 +214,7 @@ var whackacake = function all() {
         
         
     }
+
     
     $g.setMusic = function(some_bool) {
         if (some_bool) {
@@ -499,6 +501,7 @@ var whackacake = function all() {
 						**/
 		
             $g.sounds.music.pause();
+            $g.sounds.fanfare.play();
             
             var oldScore = $this.score;
             if ($this.cakesFinished > 0) {
