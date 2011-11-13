@@ -79,7 +79,7 @@
             });
 
 
-            whackacake.start(2);
+            whackacake.start();
             
             $('#loading').hide();
 
@@ -113,8 +113,8 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:650px;
-            top:40px;
+            left:400px;
+            top:20px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
 
         }
@@ -122,8 +122,8 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:220px;
-            top:40px;
+            left:20px;
+            top:455px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
 
         }
@@ -131,8 +131,8 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:460px;
-            top:40px;
+            left:680px;
+            top:20px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
 
         }
@@ -158,11 +158,17 @@
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
 
         }
-        #game.cursor_up {
-            cursor: url("images/game/club_01.png");
+        div#game.cursor_up {
+            cursor: url('images/game/club_01.png'), auto !important;
         }
-        #game.cursor_down {
-            cursor: url("images/game/empty_cursor.png");
+        div#game.cursor_down {
+            cursor: url('images/game/empty_cursor.cur'), auto !important;
+        }
+
+        .orange_text{
+            font-size: 30pt;
+            font-weight: bold;
+            color: orange;
         }
 
     </style>
@@ -183,7 +189,7 @@
   </ul>
   
   <ul class="game_controls clearfix">
-  	<li><a class="btn_sound1 btn_sound1_inactive" title="Sound" onclick="whackacake.game.toggleMusic(false)">Sound</a></li>
+  	<li><a class="btn_sound1" title="Sound" onclick="whackacake.game.toggleMusic(false);">Sound</a></li>
     <li><a class="btn_how1" href="#" title="How To Play">How to play</a></li>
     <li><a class="btn_scores1" href="#" title="High Scores">High Scores</a></li>
   </ul>
@@ -203,13 +209,13 @@
     <div id='game' class='cursor_up'>
 
           <div id='score_div' >
-              Score:<span id='game_score' >0</span>
+              Score:<span id='game_score' class='orange_text' >0</span>
           </div>
           <div id="cake_div">
-            Cakes Made: <span id='cakes' >0</span>
+            Cakes Made: <span id='cakes'  class='orange_text'>0</span>
           </div>
           <div id="time_div">
-            Time: <span id='timer' >N/A</span>
+            Time: <span id='timer' class='orange_text' >N/A</span>
           </div>
           <canvas id="cake_stack" >
           </canvas>
@@ -336,6 +342,15 @@
 		$("#high-scores-pop").dialog("open");
 		e.preventDefault();
 	});
+	
+	// Audio toggle defined in game.js - D1RtY h4xX - john
+	
+	$(".btn_play_again").live("click", function(e) {
+	    $(".your_score_wp").hide();
+        $('.canvas_wp').show();
+        whackacake.start(); //
+        
+	})
 </script>
 
 </body>
