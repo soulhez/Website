@@ -1,7 +1,7 @@
 // http://www.tutorialspoint.com/javascript/array_foreach.htm
-if (!Object.prototype.forEach)
+/*if (!Object.prototype.forEach)
 {
-    Object.prototype.forEach = function(fun /*, thisp*/)
+    Object.prototype.forEach = function(fun /*, thisp*)
     {
         var len = this.length;
         if (typeof fun != "function")
@@ -14,7 +14,7 @@ if (!Object.prototype.forEach)
                 fun.call(thisp, this[i], i, this);
         }
     };
-}
+}*/
 
 /*
  * * Recursively merge properties of two objects 
@@ -238,10 +238,13 @@ var whackacake = function all() {
 
         this.mouseDown = function(e) {
             var mousePosition = my.getMousePosition(e);
+            console.log(e);
             var mouseX = mousePosition.x;
             var mouseY = mousePosition.y;
             mouseX -= my.canvas.offsetLeft;
             mouseY -= my.canvas.offsetTop;
+            console.log(mouseX);
+            console.log(mouseY);
             $this.cursor.down()
             $this.canvasPressed(mouseX, mouseY);
         }
