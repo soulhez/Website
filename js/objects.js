@@ -59,6 +59,8 @@ objects = function(gameobj){
             gameobj.game.animatedText.push( new my.AnimatedText(
                     x,
                     y,
+                    '#F0F',
+                    '#0F0',
                     textAnimation,
                      (gameobj.game.cakesFinished + 1) +" X" ));
 
@@ -93,9 +95,11 @@ objects = function(gameobj){
     }
 
 
-    gameobj.AnimatedText = function(x, y, animation, str) {
+    gameobj.AnimatedText = function(x, y, colorInner, colorOuter, animation, str) {
         var $this = this;
         this.coord = new gameobj.Coords(x, y);
+        this.colorOuter = colorOuter;
+        this.colorInner = colorInner;
         this.animation = animation;
         this.animation.start();
         this.str = str;
@@ -109,10 +113,19 @@ objects = function(gameobj){
             if (this.animation.hasFinished()){
                 return true;
             }
-            
-            round_x = ~~ ($this.coord.x+0.5)
-            round_y = ~~ ($this.coord.y+0.5)
+
+            var round_x = ~~ ($this.coord.x+0.5)
+            var round_y = ~~ ($this.coord.y+0.5)
+
+            ctx.font = "40pt MarkerFelt-Thin; 40pt Comic Sans MS";
+            ctx.fillStyle = colorOuter;
             ctx.fillText($this.str, round_x, round_y);
+
+            round_x -=3;
+            round_y -=3;
+            ctx.fillStyle = colorInner;
+            ctx.fillText($this.str, round_x, round_y);
+
             return false;
         }
 
