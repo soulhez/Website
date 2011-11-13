@@ -33,6 +33,24 @@
             $(".randomsprite").addClass(stringnum);
 
 
+
+            $('#score_submit').click(function() {
+                $.ajax({
+                  type: 'POST',
+                  url: 'http://api.whackacake.com/scores',
+                  data: "name=" + $('#userName').val() + "&score=" + $('.nr_score_total').html(),
+                  success: function(result) {
+                    console.log(result);
+                  }
+                });
+
+                console.log()
+
+                return false;
+            });
+
+
+
             whackacake.init({gameOverCallback: function(score, cakes) {
 
 
@@ -43,7 +61,9 @@
                 $('.canvas_wp').hide();
                 $('.your_score_wp').show();
                 
-            }});
+            },
+            gameTime:10
+            });
 
 
             $('#userName').focus(function() {
@@ -66,7 +86,6 @@
             //$('.your_score_wp').show();
 
         });
-
 
 
 
@@ -212,7 +231,7 @@
 
       <div class="submit_name_wp clearfix">
       	<input id="userName" class="input_txt" type="text" value="Your Name" />
-        <input class="input_submit" type="submit" value="" />
+        <span id="score_submit" class="input_submit"></span>
       </div>
 
       <span class="nr_score"></span>
