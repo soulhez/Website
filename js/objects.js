@@ -46,6 +46,22 @@ objects = function(gameobj){
         };
 
         this.slideAway = function(cake_list) {
+
+            var x = 0; //cake_list[cake_list.length-1].sprite.coord.x - 100;
+            var y = cake_list[cake_list.length-1].sprite.coord.y;
+
+            //animate score message popping up
+            var textAnimation = new my.TransAnimation(
+                    new my.Coords(x, y ),
+                    new my.Coords(x, y - 200),
+                    my.getDurationInFrames(4000));
+
+            gameobj.game.animatedText.push( new my.AnimatedText(
+                    x,
+                    y,
+                    textAnimation,
+                     (gameobj.game.cakesFinished + 1) +" X" ));
+
             for(j =0; j < cake_list.length; j++) {
                 cake_list[j].slideAway();
             }
@@ -147,8 +163,8 @@ objects = function(gameobj){
         }
 
         this.isClickedOn = function(x, y) {
-            if (( $this.coord.x - $this.width < x && $this.coord.x + $this.width > x )
-                    && ( $this.coord.y - $this.height < y && $this.coord.y + $this.height > y )) {
+            if (( $this.coord.x - $this.width /2 < x && $this.coord.x + $this.width / 2 > x )
+                    && ( $this.coord.y - $this.height /2 < y && $this.coord.y + $this.height / 2 > y )) {
                 return true;
             }
             return false;
@@ -335,7 +351,6 @@ objects = function(gameobj){
     gameobj.Ingredient = function(type_no){
     	var $this = this;
     	this.type_no = type_no;
-    	console.log(type_no);
     	this.sprite = new gameobj.Sprite(null, null, gameobj.game.images["ingredient_"+type_no]);
     	this.visible = false;
 
@@ -370,9 +385,11 @@ objects = function(gameobj){
             this.wasHit = true;
             gameobj.game.cakeStack.addToCakeStack(type_no);
             if (type_no < 5) {
-                return 100 + $this.hitFastBonus();
+                gameobj.game.sounds.good_hit.play();
+                return gameobj.config.badScore + $this.hitFastBonus();
             } else {
-                return - 50;
+                gameobj.game.sounds.bad_hit.play();
+                return gameobj.config.goodScore + $this.hitFastBonus();
             }
         }
         

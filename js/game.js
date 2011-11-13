@@ -49,7 +49,9 @@ var whackacake = function all() {
     my = {};
     my.config = {
         spawnProbability:3/100,
-        gameOverCallback:function(score){}
+        gameOverCallback:function(score){},
+        goodScore:100,
+        badScore:-100,
     };
 
 
@@ -84,8 +86,6 @@ var whackacake = function all() {
 							if (navigator.userAgent.match(/Android/i)) {
 							   my.isRunningOnAndroid = true;
 							}
-				
-        console.debug("canvas: " + style);
 
 
     }
@@ -98,6 +98,12 @@ var whackacake = function all() {
 
     my.setSpawnProb = function(value){
         my.config.spawnProbability = value;
+    }
+    my.setGoodScore = function(value){
+        my.config.goodScore = value;
+    }
+    my.setBadScore = function(value){
+        my.config.badScore = value;
     }
 
 
@@ -129,7 +135,7 @@ var whackacake = function all() {
             $this.startTime = new Date().getTime();
             // 1 per second - Actually, this is the expectation of the number of ingredients that should spawn in a frame.
             my.frameCount = 0;
-            $this.images = {};
+            $this.loadSounds();
             $this.loadImages();
             $this.cakeStack = new my.CakeStack($this.images.cakeLayers);
             $this.cups = this.createCups();
@@ -257,20 +263,41 @@ var whackacake = function all() {
                 im.height = height;
                 return im;
             }
-            $this.images.cup = addImage("images/bowl_back.png", 150, 100);
-            $this.images.cupFront = addImage("images/bowl_front.png", 150, 100);
-            $this.images.ingredients = addImage("images/ingredients.png", 150, 150);
+            $this.images={}
+            $this.images.cup = addImage("images/game/bowl_back.png", 150, 100);
+            $this.images.cupFront = addImage("images/game/bowl_front.png", 150, 100);
+            $this.images.ingredients = addImage("images/game/ingredients.png", 150, 150);
             $this.images.choc = new Image();
-            $this.images.choc.src = "images/chocolate.jpg";
+            $this.images.choc.src = "images/game/chocolate.jpg";
             for (i=0; i<10; i++) {
-                $this.images["ingredient_"+i] = addImage("images/ing_"+i+".png", 130, 90);
-                $this.images["cake_layer_"+i] = addImage("images/cl_"+i+".png", 100, 50);
+                $this.images["ingredient_"+i] = addImage("images/game/ing_"+i+".png", 130, 90);
+                $this.images["cake_layer_"+i] = addImage("images/game/cl_"+i+".png", 100, 50);
             }
-            $this.images.background = new Image;
-            $this.images.background.src = "images/background_right.png";
-            $this.images.background_left = addImage("images/background_left.png");
+            $this.images.background = new Image();
+            $this.images.background.src = "images/game/background_right.png";
+            $this.images.background_left = addImage("images/game/background_left.png");
         }
-
+        
+        
+        this.loadSounds = function() {
+            var addSound = function(src) {
+                var aud = document.createElement("audio");
+                // Set source files for audio
+                [".mp3", ".ogg"].forEach(function(ext) {
+                    var src_el = document.createElement("source");
+                    src_el.setAttribute("src", src+ext);
+                    aud.appendChild(src_el);
+                });
+                aud.addEventListener('ended', function() {
+                    this.currentTime=0;
+                    this.pause();
+                });
+                return aud;
+            }
+            $this.sounds = {}
+            $this.sounds.good_hit = addSound("sound/good_hit");
+            $this.sounds.bad_hit = addSound("sound/bad_hit");
+        }
 
         this.incrementCakes = function() {
             $this.cakesFinished++;
