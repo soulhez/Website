@@ -20,7 +20,13 @@
         $(document).ready(function() {
             $(".randomsprite").addClass(stringnum);
             
-            whackacake.init();
+            whackacake.init({gameOverCallback: function(score, cakes) {
+                $('.canvas_wp').hide();
+                $('.your_score_wp').show();
+                console.log(score);
+                console.log(cakes);
+            }});
+
             whackacake.start();
             
             $('#loading').hide();
@@ -43,9 +49,7 @@
             }
         };
 
-        function gameOver(score){
-            document.getElementById("startButton").disabled = false;
-        }
+
     </script>
 
 
@@ -169,6 +173,25 @@
 
     </div>
   </div>
+
+
+  	<div style="display:none;" class="your_score_wp">
+
+      <div class="submit_name_wp clearfix">
+      	<input class="input_txt" type="text" value="Your Name" />
+        <input class="input_submit" type="submit" value="" />
+      </div>
+
+      <span class="nr_score">300</span>
+      <span class="nr_complete_cakes">x4</span>
+      <span class="nr_score_total">1200</span>
+
+      <ul class="game_buttons">
+      	<li><a class="btn_play_again" href="#" title="Play Again">Play Again</a></li>
+        <li><a class="btn_donate" href="#" title="Donate">Donate</a></li>
+      </ul>
+
+    </div><!--/.your_score_wp-->
     
   </div><!--/.game_container-->
 
