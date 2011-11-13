@@ -442,7 +442,7 @@ objects = function(gameobj){
       $this.down = function(){
          if($this.state == "up") {
             $this.state = "down";
-            $this.resetFrame = gameobj.frameCount + gameobj.getDurationInFrames(240);
+            $this.resetFrame = gameobj.frameCount + gameobj.getDurationInFrames(600);
             gameobj.gameDiv.setAttribute('class', "cursor_down"); 
          }
       };
