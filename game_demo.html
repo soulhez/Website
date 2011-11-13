@@ -33,7 +33,7 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:680px;
+            left:400px;
             top:20px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
             
@@ -42,8 +42,8 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:130px;
-            top:20px;
+            left:10px;
+            top:450px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
             
         }
@@ -51,7 +51,7 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:400px;
+            left:680px;
             top:20px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
             
@@ -85,6 +85,12 @@
             cursor: url("images/game/empty_cursor.png");
         }
 
+        .orange_text{
+            font-size: 30pt;
+            font-weight: bold;
+            color: orange;
+        }
+
     </style>
 </head>
 
@@ -92,13 +98,13 @@
 <div id='game' class='cursor_up'>
   
   <div id='score_div' >
-      Score:<span id='game_score' >0</span>
+      Score:<span id='game_score'  class='orange_text' >0</span>
   </div>
   <div id="cake_div">
-  Cakes Made: <span id='cakes' >0</span>
+  Cakes Made <span id='cakes' class='orange_text' >0</span>
   </div>
   <div id="time_div">
-  Time: <span id='timer' >N/A</span>
+  Time: <span id='timer' class='orange_text' >-</span>
   </div>
   <canvas id="cake_stack" >
   </canvas>
