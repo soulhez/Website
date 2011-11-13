@@ -10,6 +10,14 @@
 </head>
 
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="mainWrapper" class="clearfix">
 
@@ -19,7 +27,7 @@
   	<li><a class="a_home" href="/" title="Whack A Cake">Whack a cake homepage</a></li>
     <li><a class="a_about" href="/about.html" title="About Whack A Cake">About Whack a cake</a></li>
     <li><a class="a_press" href="/press.html" title="Whack A Cake in Press">Press</a></li>
-    <li><a class="a_blog" href="http://whackacake.tumblr.com" title="Whack A Cake Blog">Blog</a></li>
+    <li><a class="a_blog" target="_blank" href="http://whackacake.tumblr.com" title="Whack A Cake Blog">Blog</a></li>
     <li><a class="a_contact" href="/contact.html" title="Whack A Cake Contact">Contact</a></li>
     <li><a class="a_donate" href="http://www.bbc.co.uk/pudsey/donate/" title="Donate">Donate</a></li>
   </ul>
@@ -35,7 +43,7 @@
 
 <div class="spacer70">
 	<div class="home_like">
-      
+    <div class="fb-like" data-href="https://www.facebook.com/whackacake" data-send="false" data-width="450" data-show-faces="true"></div>
   </div>
 </div><!--/.spacer70-->
 
@@ -47,8 +55,9 @@
   	<a class="btn_play_large" href="/game.html" title="Play Whack A Cake">Play Whack A Cake</a>
     
     <ul class="home_nav">
-    	<li><a id="btn_how_to_play" class="btn_how_to_play" href="/game.html" title="How To Play">How To Play</a></li>
+    	<li><a id="btn_how_to_play" class="btn_how_to_play" href="#" title="How To Play">How To Play</a></li>
       <li><a id="btn_high_scores" class="btn_high_scores" href="#" title="High Scores">High Scores</a></li>
+      <li><a class="btn_caracters" href="/characters.html" title="Characters">Caracters</a></li>
     </ul><!--/.home_nav-->
   	
   </div><!--/.home_panel-->
@@ -91,10 +100,10 @@
 	<span class="copyright">Copyright &copy; Whack a Cake, made in 48 hours by <a href="http://www.oxygenaccelerator.com/" title="Oxygen Accelerator">Oxygen Accelerator</a></span>
   
   <ul class="footer_links">
-  	<li><a href="/gallery" title="Team">Gallery</a></li>
-    <li><a href="http://whackacake.tumblr.com" title="Blog">Blog</a></li>
-    <li><a href="#" title="Contact">Contact</a></li>
-    <li class="last"><a href="#" title="Donate">Donate</a></li>
+  	<li><a href="/about.html" title="Team">About</a></li>
+    <li><a href="http://whackacake.tumblr.com" target="_blank" title="Blog">Blog</a></li>
+    <li><a href="/contact.html" title="Contact">Contact</a></li>
+    <li class="last"><a href="http://www.bbc.co.uk/pudsey/donate/" title="Donate">Donate</a></li>
   </ul>
 	
   <span class="ic_clube_01">.</span>

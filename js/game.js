@@ -1,7 +1,7 @@
 // http://www.tutorialspoint.com/javascript/array_foreach.htm
-if (!Object.prototype.forEach)
+/*if (!Object.prototype.forEach)
 {
-    Object.prototype.forEach = function(fun /*, thisp*/)
+    Object.prototype.forEach = function(fun /*, thisp*)
     {
         var len = this.length;
         if (typeof fun != "function")
@@ -14,7 +14,7 @@ if (!Object.prototype.forEach)
                 fun.call(thisp, this[i], i, this);
         }
     };
-}
+}*/
 
 /*
  * * Recursively merge properties of two objects 
@@ -98,7 +98,7 @@ var whackacake = function all() {
 				* Currently used to adjust animation duration
 				**/
 				
-				my.isRunningOnIos = false;
+				my.isRunningOnIos = true;
 				my.isRunningOnAndroid = false;
 				if (navigator.userAgent.match(/like Mac OS X/i)) {
 				   my.isRunningOnIos = true;
@@ -238,10 +238,12 @@ var whackacake = function all() {
 
         this.mouseDown = function(e) {
             var mousePosition = my.getMousePosition(e);
-            var mouseX = mousePosition.x;
-            var mouseY = mousePosition.y;
-            mouseX -= my.canvas.offsetLeft;
-            mouseY -= my.canvas.offsetTop;
+            console.log(e);
+            var position = $('#main_canvas').offset();
+            mouseX = mousePosition.x - position.left;
+            mouseY = mousePosition.y - position.top;
+            console.log(mouseX);
+            console.log(mouseY);
             $this.cursor.down()
             $this.canvasPressed(mouseX, mouseY);
         }
