@@ -380,10 +380,10 @@ var whackacake = function all() {
             // DONT F**K AROUND
             if (my.game.sounds.music.volume < 0.5) {
                 my.game.sounds.music.volume=1;
-                $(".btn_sound1").addClass("btn_sound1_inactive");
+                $(".btn_sound1").removeClass("btn_sound1_inactive");
             } else if (my.game.sounds.music.volume > 0.5) {
                 my.game.sounds.music.volume=0;
-                $(".btn_sound1").removeClass("btn_sound1_inactive");
+                $(".btn_sound1").addClass("btn_sound1_inactive");
             }
             return false;
         }
