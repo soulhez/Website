@@ -49,11 +49,11 @@ var whackacake = function all() {
     my = {};
     my.config = {
         spawnProbability:3/100,
-        gameTime:61,
+        gameTime:6,
         ingredientStaysTimeRandom:50,
         ingredientstaysTimeConstant:500,
         goodScore:100,
-        badScore:-100,
+        badScore:-200,
         numLayersPerCake:10,
         
         gameOverCallback:function(score, cakes){}
@@ -110,7 +110,9 @@ var whackacake = function all() {
 
     }
 
-    my.start = function(special_ingredient){
+    my.start = function(){
+        // Loading 
+        special_ingredient = 2
         my.game = new Game(special_ingredient);
         my.game.init();
         my.game.sounds.music.play();
@@ -192,7 +194,7 @@ var whackacake = function all() {
             $this.cursor = new my.Cursor(60, 62, $this.images.cursor_down);
             $this.background_left = new my.Background(my.canvas_cake_stack.width,my.canvas_cake_stack.height,$this.images.background_left);
             $this.background_right = new my.Background(my.canvas.width,my.canvas.height,$this.images.background_right);
-            my.canvas.addEventListener('click', $this.mouseDown,false);
+            my.gameDiv.addEventListener('click', $this.mouseDown,false);
             my.canvas.addEventListener("touchstart", $this.touchDown, false);
             my.canvas.addEventListener("touchmove", $this.touchMove, true);
             my.canvas.addEventListener("touchend", $this.touchUp, false);
@@ -386,11 +388,13 @@ var whackacake = function all() {
         this.toggleMusic = function() {
             // DONT F**K AROUND
             if (my.game.sounds.music.volume < 0.5) {
-                my.game.sounds.music.volume=1
+                my.game.sounds.music.volume=1;
+                $(".btn_sound1").removeClass("btn_sound1_inactive");
+            } else if (my.game.sounds.music.volume > 0.5) {
+                my.game.sounds.music.volume=0;
+                $(".btn_sound1").addClass("btn_sound1_inactive");
             }
-            if (my.game.sounds.music.volume > 0.5) {
-                my.game.sounds.music.volume=0
-            }
+            return false;
         }
 
         this.incrementCakes = function() {
@@ -473,7 +477,7 @@ var whackacake = function all() {
             
             var oldScore = $this.score;
             if ($this.cakesFinished > 0) {
-                $this.score = $this.score * $this.cakesFinished
+                $this.score = $this.score;
             }
             my.config.gameOverCallback($this.score, $this.cakesFinished);
         }
