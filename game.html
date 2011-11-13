@@ -39,6 +39,12 @@
                   },
                   success: function(result) {
                     console.log(result);
+
+                    $(result.results).each(function(index, score) {
+                        $('#highScoreTable').append('<tr><td><span class="txt_left">' + score.name + '</span></td><td align="right"><span class="txt_right">' + score.score + ' points</span></td></tr>');
+                    });
+
+                    $("#high-scores-pop").dialog("open");
                   }
                 });
 
@@ -105,8 +111,8 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:650px;
-            top:40px;
+            left:400px;
+            top:20px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
 
         }
@@ -114,8 +120,8 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:220px;
-            top:40px;
+            left:20px;
+            top:455px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
 
         }
@@ -123,8 +129,8 @@
             color: #222;
             font-size: 20pt;
             position:absolute;
-            left:460px;
-            top:40px;
+            left:680px;
+            top:20px;
             font-family:"MarkerFelt-Thin", "Comic Sans MS";
 
         }
@@ -151,10 +157,16 @@
 
         }
         div#game.cursor_up {
-            cursor: url('images/game/club_01.png'), auto;
+            cursor: url('images/game/club_01.png'), auto !important;
         }
         div#game.cursor_down {
-            cursor: url('images/game/empty_cursor.png'), auto;
+           cursor: url('images/game/empty_cursor.cur'), auto !important;
+        }
+
+        .orange_text{
+            font-size: 30pt;
+            font-weight: bold;
+            color: orange;
         }
 
     </style>
@@ -195,13 +207,13 @@
     <div id='game' class='cursor_up'>
 
           <div id='score_div' >
-              Score:<span id='game_score' >0</span>
+              Score:<span id='game_score' class='orange_text' >0</span>
           </div>
           <div id="cake_div">
-            Cakes Made: <span id='cakes' >0</span>
+            Cakes Made: <span id='cakes'  class='orange_text'>0</span>
           </div>
           <div id="time_div">
-            Time: <span id='timer' >N/A</span>
+            Time: <span id='timer' class='orange_text' >N/A</span>
           </div>
           <canvas id="cake_stack" >
           </canvas>
@@ -223,7 +235,7 @@
 
   	<div style="display:none;" id="your_score_wp" class="your_score_wp">
 
-      <div class="submit_name_wp clearfix">
+      <div id="submitForm" class="submit_name_wp clearfix">
       	<input id="userName" class="input_txt" type="text" value="Your Name" />
         <span id="score_submit" class="input_submit"></span>
       </div>
@@ -257,8 +269,8 @@
   	
     <div class="score_table_wp">
       <div class="inner_score_table_wp">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tr>
+        <table cellpadding="0" id="highScoreTable" cellspacing="0" border="0">
+          <!--<tr>
             <td><span class="txt_left">1. John Doe</span></td>
             <td align="right"><span class="txt_right">200 points</span></td>
           </tr>
@@ -297,7 +309,7 @@
           <tr>
             <td><span class="txt_left">2. John Doe</span></td>
             <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
+          </tr>-->
         </table>
       </div><!--/.inner_score_table_wp-->
     </div>

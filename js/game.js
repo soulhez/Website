@@ -60,11 +60,11 @@ var whackacake = function all() {
     my = {};
     my.config = {
         spawnProbability:3/100,
-        gameTime:6,
+        gameTime:60,
         ingredientStaysTimeRandom:50,
         ingredientstaysTimeConstant:500,
         goodScore:100,
-        badScore:-100,
+        badScore:-200,
         numLayersPerCake:10,
         
         gameOverCallback:function(score, cakes){}
@@ -316,22 +316,29 @@ var whackacake = function all() {
 
             var messageX = x - 50;
             var messageY = y - 50;
+            var innerColor = 'orange';
+            var outerColor = 'white';
+
             var scoreMessage;
             if (scoreToAdd > 0) {
                 scoreMessage = "+"+scoreToAdd;
             } else {
+                innerColor = 'brown';
+                outerColor = 'white';
                 scoreMessage = scoreToAdd;
             }
             
             if (isSpecial) {
+                innerColor = 'orange';
+                outerColor = 'blue';
                 scoreMessage+=" x 2";
             }
             //animate score message popping up
             var textAnimation = new my.TransAnimation(new my.Coords(messageX, messageY),
                     new my.Coords(messageX, messageY - 50),
-                    my.getDurationInFrames(1000));
+                    my.getDurationInFrames(2000));
 
-            $this.animatedText.push( new my.AnimatedText( messageX, messageY, textAnimation, scoreMessage ));
+            $this.animatedText.push( new my.AnimatedText( messageX, messageY, innerColor, outerColor, textAnimation, scoreMessage ));
 
             if (isSpecial) {
                 scoreToAdd = scoreToAdd*2;
@@ -475,9 +482,7 @@ var whackacake = function all() {
             }
             $this.cursor.draw($this.ctx);
             $this.ctx_cake_stack.clearRect(0, 0, my.canvas_cake_stack.width, my.canvas_cake_stack.height);
-            $this.ctx.font = "20pt Arial";
-						$this.ctx.fontColor = "#FFF";
-            
+
             for (i = 0; i < $this.animatedText.length; i++) {
                 $this.animatedText[i].draw($this.ctx);
             }
@@ -488,7 +493,10 @@ var whackacake = function all() {
         }
 
         this.gameOver = function() {
-            my.game.sounds.music.currentTime = 0;
+						/** 
+							* my.game.sounds.music.currentTime = 0 was throwing an error on  iOS.
+						**/
+		
             my.game.sounds.music.pause();
             
             var oldScore = $this.score;
