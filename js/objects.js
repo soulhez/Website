@@ -315,7 +315,7 @@ objects = function(gameobj){
             var upAnimation = new gameobj.TransAnimation(startPoint, endPoint, duration, interpolator);
 
 
-            var bobDuration = gameobj.getDurationInFrames(100);
+            var bobDuration = gameobj.getDurationInFrames(200);
             var topOfBob = endPoint.add(new gameobj.Coords(0, -10));
             var upMoreAnimation = new gameobj.TransAnimation(endPoint, topOfBob, bobDuration, interpolator);
             var downAgainAnimation = new gameobj.TransAnimation(topOfBob, endPoint, bobDuration, interpolator);

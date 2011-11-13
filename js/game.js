@@ -56,7 +56,7 @@ var whackacake = function all() {
         badScore:-100,
         numLayersPerCake:10,
         
-        gameOverCallback:function(score){}
+        gameOverCallback:function(score, cakes){}
     };
 
     /*my.init = function() {
@@ -452,7 +452,7 @@ var whackacake = function all() {
             if ($this.cakesFinished > 0) {
                 $this.score = $this.score * $this.cakesFinished
             }
-            my.config.gameOverCallback($this.score);
+            my.config.gameOverCallback($this.score, $this.cakesFinished);
         }
     }
 
