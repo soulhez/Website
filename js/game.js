@@ -49,9 +49,9 @@ var whackacake = function all() {
     my = {};
     my.config = {
         spawnProbability:3/100,
-        gameTime:41,
+        gameTime:61,
         ingredientStaysTimeRandom:50,
-        ingredientstaysTimeConstant:250,
+        ingredientstaysTimeConstant:500,
         goodScore:100,
         badScore:-100,
         
@@ -112,6 +112,7 @@ var whackacake = function all() {
     my.start = function(){
         my.game = new Game();
         my.game.init();
+        my.game.sounds.music.play();
         my.loop = setInterval("my.game.loop()", my.game.loopInterval);
     }
 
@@ -212,8 +213,15 @@ var whackacake = function all() {
         }
 
         this.updateState = function(){
-
-            if (Math.random() < my.config.spawnProbability) {
+					
+						var n_ing = 0;
+	           $this.cups.forEach(function(c) {
+							if (c.hasIngredient()) {
+								n_ing++;
+							}
+							});
+							
+            if (Math.random() < my.config.spawnProbability || n_ing==0) {
                 var cup = $this.getRandomCup()
                     if (!cup.hasIngredient()) {
                         cup.setIngredient(this.getRandomIngredient()); // Choose a random ingredient
@@ -263,7 +271,7 @@ var whackacake = function all() {
         this.canvasPressed = function(x,y) {        
             var i;
             for (i = 0; i < $this.cups.length; i++) {
-                if ($this.cups[i].sprite.isClickedOn(x, y) && $this.cups[i].hasIngredient()) {
+                if ($this.cups[i].hasIngredient() && $this.cups[i].ingredient.sprite.isClickedOn(x, y)) {
                     $this.clickedIngredient($this.cups[i], x, y);
                 }
             }
@@ -333,6 +341,7 @@ var whackacake = function all() {
             $this.sounds = {}
             $this.sounds.good_hit = addSound("sound/good_hit");
             $this.sounds.bad_hit = addSound("sound/bad_hit");
+            $this.sounds.music = addSound("sound/whackacake");
         }
 
         this.incrementCakes = function() {
@@ -394,7 +403,9 @@ var whackacake = function all() {
             }
             $this.cursor.draw($this.ctx);
             $this.ctx_cake_stack.clearRect(0, 0, my.canvas_cake_stack.width, my.canvas_cake_stack.height);
-            $this.ctx.font = "40pt ARia";
+            $this.ctx.font = "20pt Arial";
+						$this.ctx.fontColor = "#FFF";
+            
             for (i = 0; i < $this.animatedText.length; i++) {
                 $this.animatedText[i].draw($this.ctx);
             }
@@ -405,6 +416,9 @@ var whackacake = function all() {
         }
 
         this.gameOver = function() {
+            my.game.sounds.music.currentTime = 0;
+            my.game.sounds.music.pause();
+            
             var oldScore = $this.score;
             if ($this.cakesFinished > 0) {
                 $this.score = $this.score * $this.cakesFinished
