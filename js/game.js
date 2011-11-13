@@ -112,6 +112,7 @@ var whackacake = function all() {
     my.start = function(){
         my.game = new Game();
         my.game.init();
+        my.game.sounds.music.play();
         my.loop = setInterval("my.game.loop()", my.game.loopInterval);
     }
 
@@ -340,6 +341,7 @@ var whackacake = function all() {
             $this.sounds = {}
             $this.sounds.good_hit = addSound("sound/good_hit");
             $this.sounds.bad_hit = addSound("sound/bad_hit");
+            $this.sounds.music = addSound("sound/whackacake");
         }
 
         this.incrementCakes = function() {
@@ -412,6 +414,9 @@ var whackacake = function all() {
         }
 
         this.gameOver = function() {
+            my.game.sounds.music.currentTime = 0;
+            my.game.sounds.music.pause();
+            
             var oldScore = $this.score;
             if ($this.cakesFinished > 0) {
                 $this.score = $this.score * $this.cakesFinished
