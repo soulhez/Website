@@ -205,8 +205,8 @@ var whackacake = function all() {
             
             return aud;
         }
-        $g.sounds.music = addSound("sound/whackacake");
-        $g.sounds.fanfare = addSound("sound/fanfare");
+        $g.sounds.music = addSound("http://static.whackacake.com/sound/whackacake");
+        $g.sounds.fanfare = addSound("http://static.whackacake.com/sound/fanfare");
         $g.sounds.music.load();
         $g.sounds.music.addEventListener('loadeddata', function () {
             // Loaded
@@ -406,16 +406,16 @@ var whackacake = function all() {
                 return im;
             }
             $this.images={}
-            $this.images.cup = addImage("images/game/bowl_back.png", 150, 100);
-            $this.images.cupFront = addImage("images/game/bowl_front.png", 150, 100);
-            $this.images.ingredients = addImage("images/game/ingredients.png", 150, 150);
+            $this.images.cup = addImage("http://static.whackacake.com/images/game/bowl_back.png", 150, 100);
+            $this.images.cupFront = addImage("http://static.whackacake.com/images/game/bowl_front.png", 150, 100);
+            $this.images.ingredients = addImage("http://static.whackacake.com/images/game/ingredients.png", 150, 150);
             $this.images.choc = new Image();
-            $this.images.choc.src = "images/game/chocolate.jpg";
+            $this.images.choc.src = "http://static.whackacake.com/images/game/chocolate.jpg";
             for (i=0; i<10; i++) {
-                $this.images["ingredient_"+i] = addImage("images/game/ing_"+i+".png", 130, 90);
-                $this.images["cake_layer_"+i] = addImage("images/game/cl_"+i+".png", 100, 50);
+                $this.images["ingredient_"+i] = addImage("http://static.whackacake.com/images/game/ing_"+i+".png", 130, 90);
+                $this.images["cake_layer_"+i] = addImage("http://static.whackacake.com/images/game/cl_"+i+".png", 100, 50);
             }
-            $this.images.cursor_down =  addImage("images/game/club_02.png");
+            $this.images.cursor_down =  addImage("http://static.whackacake.com/images/game/club_02.png");
         }
         
         
