@@ -49,7 +49,8 @@ public class GameActivity  extends Activity{
 	            public void onPageFinished(WebView view, String url)  
 	            {  
 	                webview.loadUrl("javascript:(function() { " +  
-	                        "whackacake.start(); " +  
+	                        "whackacake.init(); " +  
+	                		"whackacake.start(); " +  
 	                        "})()");  
 	            }  
 	        });  
@@ -57,7 +58,7 @@ public class GameActivity  extends Activity{
 	        
 	        
 	        
-	        webview.loadUrl("file:///android_asset/game_demo.html");
+	        webview.loadUrl("file:///android_asset/game.html");
 	        
 	               
 	 }
