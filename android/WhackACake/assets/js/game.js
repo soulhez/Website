@@ -104,42 +104,24 @@ var whackacake = function all() {
         my.canvas_cake_stack.height = screenHeight;
         my.canvas_cake_stack.width = cakeStackWidth;
 
-				/**
-				* User agent matching to detect iOS devices and Android devices
-				* Currently used to adjust animation duration
-				**/
-				
-				my.isRunningOnIos = true;
-				my.isRunningOnAndroid = false;
-				if (navigator.userAgent.match(/like Mac OS X/i)) {
-				   my.isRunningOnIos = true;
-				}
-				
-							if (navigator.userAgent.match(/Android/i)) {
-							   my.isRunningOnAndroid = true;
-							}
-
-            $g.loadSounds();
     }
 
     my.start = function(){
-        // Loading      
-         var random = Math.floor(Math.random()*6);
-	    random = random + 1;
-    	my.game = new Game(random);
-    	my.game.init();
-    	my.loop = setInterval("my.game.loop()", my.game.loopInterval);
-    	    
-   }
+        // Loading 
+        
+        special_ingredient = getAndDrawRandomSpriteToLoadingScreen();
+        setTimeout("my.actuallyStart("+special_ingredient+")", 2000); //TODO 4
+        $(".game_loading_wp").show();
+        $('#canvas_wp').hide();
+
+    }
     
     my.actuallyStart = function(special_ingredient) {
         $(".game_loading_wp").hide();
         $('#canvas_wp').show();
         my.game = new Game(special_ingredient);
         my.game.init();
-        $g.sounds.music.play();
         my.loop = setInterval("my.game.loop()", my.game.loopInterval);
-        
     }
 
     my.setSpawnProb = function(value){
@@ -159,12 +141,7 @@ var whackacake = function all() {
      */
 
     my.getDurationInFrames = function(milliseconds){
-		if (my.isRunningOnIos)
-            return (milliseconds / my.game.loopInterval)/3;
-		else if (my.isRunningOnAndroid)
-			return (milliseconds/my.game.loopInterval)/5;
-		else
-			return milliseconds/my.game.loopInterval;
+       return (milliseconds / my.game.loopInterval)/4;
     }
 
     my.getMousePosition = function(e) {
@@ -185,56 +162,6 @@ var whackacake = function all() {
       return cursor;
     }
     
-    
-    $g.loadSounds = function() {
-        // 5UP3R 1337 C0D3
-    
-        $g.sounds = {}
-
-        var addSound = function(src) {
-            var aud = document.createElement("audio");
-            // Set source files for audio
-            [".mp3", ".ogg"].forEach(function(ext) {
-                var src_el = document.createElement("source");
-                src_el.setAttribute("src", src+ext);
-                aud.appendChild(src_el);
-            });
-            aud.addEventListener('ended', function() {
-                this.currentTime=0;
-                this.pause();
-            });
-            
-            return aud;
-        }
-        $g.sounds.music = addSound("file:///android_asset/sound/whackacake");
-        $g.sounds.fanfare = addSound("file:///android_asset/sound/fanfare");
-        $g.sounds.music.load();
-        $g.sounds.music.addEventListener('loadeddata', function () {
-            // Loaded
-        });
-        
-        
-    }
-
-    
-    $g.setMusic = function(some_bool) {
-        if (some_bool) {
-            $g.sounds.music.volume = 1;
-        } else {
-            $g.sounds.music.volume = 0;
-        }    
-    }
-    
-    argh.toggleMusic = function() {
-        if ($g.sounds.music.volume < 0.5) {
-            $g.sounds.music.volume=1;
-            $(".btn_sound1").removeClass("btn_sound1_inactive");
-        } else if ($g.sounds.music.volume > 0.5) {
-            $g.sounds.music.volume=0;
-            $(".btn_sound1").addClass("btn_sound1_inactive");
-        }
-        return false;
-    }
 
     ///---------------- objects ----------------
 
@@ -267,12 +194,10 @@ var whackacake = function all() {
             $this.cursor = new my.Cursor(60, 62, $this.images.cursor_down);
             $this.background_left = new my.Background(my.canvas_cake_stack.width,my.canvas_cake_stack.height,$this.images.background_left);
             $this.background_right = new my.Background(my.canvas.width,my.canvas.height,$this.images.background_right);
-            my.gameDiv.addEventListener('click', $this.mouseDown,false);
             my.canvas.addEventListener("touchstart", $this.touchDown, false);
             my.canvas.addEventListener("touchmove", $this.touchMove, true);
             my.canvas.addEventListener("touchend", $this.touchUp, false);
             my.canvas.addEventListener("touchcancel", $this.touchUp, false);
-            my.canvas.addEventListener('mousemove', $this.cursor.setPosition);
         }
 
 
@@ -312,17 +237,6 @@ var whackacake = function all() {
             }
         }
 
-        this.mouseDown = function(e) {
-            var mousePosition = my.getMousePosition(e);
-            console.log(e);
-            var position = $('#main_canvas').offset();
-            mouseX = mousePosition.x - position.left;
-            mouseY = mousePosition.y - position.top;
-            console.log(mouseX);
-            console.log(mouseY);
-            $this.cursor.down()
-            $this.canvasPressed(mouseX, mouseY);
-        }
 
         this.touchDown = function(e) {
             if (!e) {
@@ -404,20 +318,18 @@ var whackacake = function all() {
                 im.src = src;
                 im.width = width;
                 im.height = height;
-                console.log(im);
                 return im;
             }
-            $this.images={};
-            $this.images.cup = addImage("file:///android_asset/game/bowl_back.png", 150, 100);
-            $this.images.cupFront = addImage("file:///android_asset/game/bowl_front.png", 150, 100);
-            $this.images.ingredients = addImage("file:///android_asset/game/ingredients.png", 150, 150);
+            $this.images={}
+            $this.images.cup = addImage("images/game/bowl_back.png", 150, 100);
+            $this.images.cupFront = addImage("images/game/bowl_front.png", 150, 100);
+            $this.images.ingredients = addImage("images/game/ingredients.png", 150, 150);
             $this.images.choc = new Image();
-            $this.images.choc.src = "file:///android_asset/game/chocolate.jpg";
+            $this.images.choc.src = "images/game/chocolate.jpg";
             for (i=0; i<10; i++) {
-                $this.images["ingredient_"+i] = addImage("file:///android_asset/images/game/ing_"+i+".png", 130, 90);
-                $this.images["cake_layer_"+i] = addImage("file:///android_asset/images/game/cl_"+i+".png", 100, 50);
+                $this.images["ingredient_"+i] = addImage("images/game/ing_"+i+".png", 130, 90);
+                $this.images["cake_layer_"+i] = addImage("images/game/cl_"+i+".png", 100, 50);
             }
-            $this.images.cursor_down =  addImage("file:///android_asset/images/game/club_02.png");
         }
         
         
@@ -498,12 +410,7 @@ var whackacake = function all() {
         }
 
         this.gameOver = function() {
-						/** 
-							* my.game.sounds.music.currentTime = 0 was throwing an error on  iOS.
-						**/
-		
-            $g.sounds.music.pause();
-            $g.sounds.fanfare.play();
+
             
             var oldScore = $this.score;
             if ($this.cakesFinished > 0) {

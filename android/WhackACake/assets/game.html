@@ -1,16 +1,50 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
- <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Game</title>
 <link rel="stylesheet" type="text/css" href="style.css"/>
-<!--[if IE]><style type="text/css">.clearfix{zoom:1; display:block;}</style><![endif]-->
- <script type="text/javascript" src="file:///android_asset/js/jquery-1.6.2.min.js" ></script>  
-    <script type="text/javascript" src="file:///android_asset/js/jquery-ui-1.8.16.custom.min.js" ></script>
-    <script type="text/javascript" src="file:///android_asset/js/objects.js" charset="utf-8"></script>
-    <script type="text/javascript" src="file:///android_asset/js/game.js" ></script>
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="js/objects.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/game.js" ></script>
 
+    <script>
+        $(document).ready(function() {
+
+            whackacake.init({gameOverCallback: function(score, cakes) {
+                $('#nr_score').html(score);
+                $('#nr_complete_cakes').html( 'x' + cakes);
+                $('#nr_score_total').html(cakes * score);
+
+                $('#canvas_wp').hide();
+                $('#your_score_wp').show(); 
+            }
+            });
+            
+            $(document).bind('touchmove', false);
+            
+            whackacake.start();
+
+        });
+
+
+
+        function buttonClicked(e){
+
+            goodScore = document.getElementById("goodScoreText").value;
+            if(goodScore != ""){
+                whackacake.setGoodScore(eval(goodScore));
+            }
+
+            badScore = document.getElementById("badScoreText").value;
+            if(badScore != ""){
+                whackacake.setBadScore(eval(badScore));
+            }
+        };
+
+
+    </script>
 
 
     <style>
@@ -20,7 +54,7 @@
             position:absolute;
             left:400px;
             top:20px;
-            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+            font-family:"MarkerFelt-Thin";
 
         }
         #cake_div {
@@ -29,7 +63,7 @@
             position:absolute;
             left:20px;
             top:455px;
-            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+            font-family:"MarkerFelt-Thin";
 
         }
         #time_div {
@@ -38,7 +72,7 @@
             position:absolute;
             left:680px;
             top:20px;
-            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+            font-family:"MarkerFelt-Thin";
 
         }
         #cake_stack {
@@ -47,9 +81,9 @@
             //border-top: 1px solid black;
             padding: 0;
             margin: 0;
-            background:url("file:///android_asset/images/game/background_left.png");
+            background:url("images/game/background_left.png");
             float:left;
-            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+            font-family:"MarkerFelt-Thin";
 
         }
         #main_canvas {
@@ -58,16 +92,10 @@
             //border-top: 1px solid black;
             padding: 0;
             margin: 0;
-            background:url("file:///android_asset/images/game/background_right.png");
+            background:url("images/game/background_right.png");
             float:left;
-            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+            font-family:"MarkerFelt-Thin";
 
-        }
-        div#game.cursor_up {
-            cursor: url('file:///android_asset/images/game/club_01.cur'), auto !important;
-        }
-        div#game.cursor_down {
-           cursor: url('file:///android_asset/images/game/empty_cursor.cur'), auto !important;
         }
 
         .orange_text{
@@ -77,14 +105,28 @@
         }
 
     </style>
+<!--    <meta name="viewport" content="initial-scale=0.5, user-scalable=NO" />  -->
+     <meta name="viewport" content="width=device-width, user-scalable=no" />  
+<!--	<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0" /> -->
 
 </head>
 
 <body>
 
-	
+<div id="main_game_wp">
+
   
-  
+  <div class="game_container">
+
+    <div id="loading" class="game_loading_wp">
+    <div class="randomspritecont">
+        <span class="randomsprite"></span>
+    	<span class="ajax_loader">Loading...</span>
+    </div>
+    </div><!--/.game_loading_wp-->
+
+    <div id="canvas_wp" class="canvas_wp">
+
     <div id='game' class='cursor_up'>
 
           <div id='score_div' >
@@ -109,8 +151,30 @@
           <div style="visibility: hidden;" id="frame_div">
           Frames: <span id='frames' >0</span>
           </div>
-
     </div>
+  </div>
+
+
+  	<div style="display:none;" id="your_score_wp" class="your_score_wp">
+
+      <span id="nr_score" class="nr_score"></span>
+      <span id="nr_complete_cakes" class="nr_complete_cakes"></span>
+      <span id="nr_score_total" class="nr_score_total"></span>
+
+      <ul class="game_buttons">
+      	<li><a class="btn_play_again" title="Play Again">Play Again</a></li>
+      </ul>
+
+    </div><!--/.your_score_wp-->
+  </div><!--/.game_container-->
+</div><!--/#main_game_wp-->
+
+<script type="text/javascript">	
+	$(".btn_play_again").live("click", function(e) {
+	    $(".your_score_wp").hide();
+        whackacake.start(); //
+	})
+</script>
 
 </body>
 </html>

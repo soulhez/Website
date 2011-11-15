@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
+import android.webkit.WebSettings.RenderPriority;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -18,10 +19,16 @@ import android.webkit.WebViewClient;
 public class GameActivity  extends Activity{
 	
 	private static final String LOG_TAG = "GameActivity";
-	
+		
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
+	        
+	        
+	        MusicPlayer.start(this);
+	        
+	        
+	        
 	        
 	        requestWindowFeature(Window.FEATURE_NO_TITLE);
 	        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
@@ -30,16 +37,22 @@ public class GameActivity  extends Activity{
 	        setContentView(R.layout.game);
 	            
 	        
+	        
+	        
 	        final WebView webview = (WebView) findViewById(R.id.webview);
 	        
 	        WebSettings ws = webview.getSettings();
 	        
 	        ws.setJavaScriptEnabled(true);
 	        ws.setSupportZoom(true);
-	        ws.setBuiltInZoomControls(true);
+	       // ws.setBuiltInZoomControls(true);
 	        ws.setDefaultZoom(WebSettings.ZoomDensity.FAR);
+	        
+	        ws.setRenderPriority(RenderPriority.HIGH);
+	        ws.setCacheMode(WebSettings.LOAD_NO_CACHE);
+	        
 	   //     ws.setLoadWithOverviewMode(true);
-	        ws.setUseWideViewPort(true);
+	       // ws.setUseWideViewPort(true);
 	        
 	        webview.setWebChromeClient(new MyWebChromeClient());
 	        
@@ -48,10 +61,10 @@ public class GameActivity  extends Activity{
 	            @Override  
 	            public void onPageFinished(WebView view, String url)  
 	            {  
-	                webview.loadUrl("javascript:(function() { " +  
-	                        "whackacake.init(); " +  
-	                		"whackacake.start(); " +  
-	                        "})()");  
+	                //webview.loadUrl("javascript:(function() { " +  
+	                //        "whackacake.init(); " +  
+	               // 		"whackacake.start(); " +  
+	               //         "})()");  
 	            }  
 	        });  
 	        
@@ -71,7 +84,19 @@ public class GameActivity  extends Activity{
 	        }
 	    }
 	 
+	 @Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		MusicPlayer.pause();
+	}
 	 
-	 
+
+	 @Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		MusicPlayer.resume();
+	}
 
 }
