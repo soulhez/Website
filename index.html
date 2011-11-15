@@ -83,21 +83,7 @@
     <div class="spacer6"></div>
     
     <div class="panel_score">
-    	<a class="a_view_all_scores" href="#">View All</a>
-      
-      <ul class="panel_score_listing">
-      	<li class="clearfix">
-        	<span class="fleft">1. Alex</span>
-          <span class="fright">3200p</span>
-        </li>
-        <li class="clearfix">
-        	<span class="fleft">2. Andy</span>
-          <span class="fright">3200p</span>
-        </li>
-        <li class="clearfix">
-        	<span class="fleft">3. James</span>
-          <span class="fright">3200p</span>
-        </li>
+      <ul id="top3Scores" class="panel_score_listing">
       </ul>
       
     </div><!--/.panel_score-->
@@ -138,47 +124,8 @@
   	
     <div class="score_table_wp">
       <div class="inner_score_table_wp">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td><span class="txt_left">1. John Doe</span></td>
-            <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
-          <tr>
-            <td><span class="txt_left">2. John Doe</span></td>
-            <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
-          <tr>
-            <td><span class="txt_left">1. John Doe</span></td>
-            <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
-          <tr>
-            <td><span class="txt_left">2. John Doe</span></td>
-            <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
-          <tr class="active_player">
-            <td><span class="txt_left">1. John Doe</span></td>
-            <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
-          <tr>
-            <td><span class="txt_left">2. John Doe</span></td>
-            <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
-          <tr>
-            <td><span class="txt_left">1. John Doe</span></td>
-            <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
-          <tr>
-            <td><span class="txt_left">2. John Doe</span></td>
-            <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
-          <tr>
-            <td><span class="txt_left">1. John Doe</span></td>
-            <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
-          <tr>
-            <td><span class="txt_left">2. John Doe</span></td>
-            <td align="right"><span class="txt_right">200 points</span></td>
-          </tr>
+        <table id="highScoreTable" cellpadding="0" cellspacing="0" border="0">
+
         </table>
       </div><!--/.inner_score_table_wp-->
     </div>
@@ -199,16 +146,49 @@
 	});
 	
 	
-	
-		$("#high-scores-pop").dialog({
+
+    $("#high-scores-pop").dialog({
 		width:480,
 		modal: true,
 		autoOpen: false
 	});
+
 	$("#btn_high_scores").live("click", function(e) {
-		$("#high-scores-pop").dialog("open");
+
+        $.ajax({
+          type: 'GET',
+          url: 'http://api.whackacake.com/scores.json',
+          success: function(result) {
+            $('#highScoreTable').empty();
+            $(result).each(function(index, score) {
+                $('#highScoreTable').append('<tr><td><span class="txt_left">' + score.name + '</span></td><td align="right"><span class="txt_right">' + score.score + ' points</span></td></tr>');
+            });
+
+              $("#high-scores-pop").dialog("open");
+          }
+        });
+
 		e.preventDefault();
 	});
+
+
+    $(document).ready(function() {
+
+        $.ajax({
+         type: 'GET',
+         url: 'http://api.whackacake.com/scores.json',
+         success: function(result) {
+           $('#highScoreTable').empty();
+           var counter = 0;
+           $(result).each(function(index, score) {
+               if (counter < 3) {
+                   $('#top3Scores').append('<li class="clearfix"><span class="fleft">' + score.name.substring(0, 11) + '</span><span class="fright">' + score.score + '</span></li>');
+               }
+               counter++;
+           });
+         }
+       });
+    });
 </script>
 
 </body>
