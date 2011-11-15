@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Game</title>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<!--[if IE]><style type="text/css">.clearfix{zoom:1; display:block;}</style><![endif]-->
+ <script type="text/javascript" src="file:///android_asset/js/jquery-1.6.2.min.js" ></script>  
+    <script type="text/javascript" src="file:///android_asset/js/jquery-ui-1.8.16.custom.min.js" ></script>
+    <script type="text/javascript" src="file:///android_asset/js/objects.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///android_asset/js/game.js" ></script>
+
+
+
+    <style>
+        #score_div{
+            color: #222;
+            font-size: 20pt;
+            position:absolute;
+            left:400px;
+            top:20px;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+
+        }
+        #cake_div {
+            color: #222;
+            font-size: 20pt;
+            position:absolute;
+            left:20px;
+            top:455px;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+
+        }
+        #time_div {
+            color: #222;
+            font-size: 20pt;
+            position:absolute;
+            left:680px;
+            top:20px;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+
+        }
+        #cake_stack {
+            //border-bottom: 1px solid black;
+            //border-left: 1px solid black;
+            //border-top: 1px solid black;
+            padding: 0;
+            margin: 0;
+            background:url("file:///android_asset/images/game/background_left.png");
+            float:left;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+
+        }
+        #main_canvas {
+            //border-bottom: 1px solid black;
+            //border-right: 1px solid black;
+            //border-top: 1px solid black;
+            padding: 0;
+            margin: 0;
+            background:url("file:///android_asset/images/game/background_right.png");
+            float:left;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+
+        }
+        div#game.cursor_up {
+            cursor: url('file:///android_asset/images/game/club_01.cur'), auto !important;
+        }
+        div#game.cursor_down {
+           cursor: url('file:///android_asset/images/game/empty_cursor.cur'), auto !important;
+        }
+
+        .orange_text{
+            font-size: 30pt;
+            font-weight: bold;
+            color: orange;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+	
+  
+  
+    <div id='game' class='cursor_up'>
+
+          <div id='score_div' >
+              Score:<span id='game_score' class='orange_text' >0</span>
+          </div>
+          <div id="cake_div">
+            Cakes Made: <span id='cakes'  class='orange_text'>0</span>
+          </div>
+          <div id="time_div">
+            Time: <span id='timer' class='orange_text' >N/A</span>
+          </div>
+          <canvas id="cake_stack" >
+          </canvas>
+
+          <canvas id="main_canvas">
+              <p>
+                  Sorry, you need an HTML5 enabled browser to play this game :( <br>
+                  Please check out <a href="http://chrome.google.com">Google Chrome.</a>
+              </p>
+          </canvas>
+
+          <div style="visibility: hidden;" id="frame_div">
+          Frames: <span id='frames' >0</span>
+          </div>
+
+    </div>
+
+</body>
+</html>

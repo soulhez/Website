@@ -1,0 +1,151 @@
+<html>
+<head>
+    <title>Whack a Cake - Children in Need</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <script type="text/javascript" src="file:///android_asset/js/jquery-1.6.2.min.js" ></script>  
+    <script type="text/javascript" src="file:///android_asset/js/jquery-ui-1.8.16.custom.min.js" ></script>
+    <script type="text/javascript" src="file:///android_asset/js/objects.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///android_asset/js/game.js" ></script>
+
+    <script type="text/javascript">
+        function buttonClicked(e){
+            document.getElementById("startButton").disabled=true;
+            spawnProbt = document.getElementById("spawnProbText").value
+            if(spawnProbt != ""){
+                whackacake.setSpawnProb(eval(spawnProbt));
+            }
+          
+            goodScore = document.getElementById("goodScoreText").value;
+            if(goodScore != ""){
+                whackacake.setGoodScore(eval(goodScore));
+            }
+
+            badScore = document.getElementById("badScoreText").value;
+            if(badScore != ""){
+                whackacake.setBadScore(eval(badScore));
+            }
+        };
+        function gameOver(score){
+            document.getElementById("startButton").disabled = false;
+        }
+    </script>
+
+    <style>
+        #score_div{
+            color: #222;
+            font-size: 20pt;
+            position:absolute;
+            left:400px;
+            top:20px;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+            
+        }
+        #cake_div {
+            color: #222;
+            font-size: 20pt;
+            position:absolute;
+            left:10px;
+            top:450px;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+            
+        }
+        #time_div {
+            color: #222;
+            font-size: 20pt;
+            position:absolute;
+            left:680px;
+            top:20px;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+            
+        }
+        #cake_stack {
+            border-bottom: 1px solid black;
+            border-left: 1px solid black;
+            border-top: 1px solid black;
+            padding: 0;
+            margin: 0;
+            background:url("images/game/background_left.png");
+            float:left;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+            
+        }
+        #main_canvas {
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+            border-top: 1px solid black;
+            padding: 0;
+            margin: 0;
+            background:url("file:///android_asset/images/game/background_right.png");
+            float:left;
+            font-family:"MarkerFelt-Thin", "Comic Sans MS";
+            
+        }
+        #game.cursor_up {
+            cursor: url("file:///android_asset/images/game/club_01.png"), auto;
+        }
+        #game.cursor_down {
+            cursor: url("file:///android_asset/images/game/empty_cursor.png"), auto;
+        }
+
+        .orange_text{
+            font-size: 30pt;
+            font-weight: bold;
+            color: orange;
+        }
+
+    </style>
+</head>
+
+<body onload="whackacake.init({gameOverCallback:gameOver})">
+<div id='game' class='cursor_up'>
+  
+  <div id='score_div'>
+      Score:<span id='game_score'  class='orange_text' >0</span>
+  </div>
+  <div id="cake_div">
+  Cakes Made <span id='cakes' class='orange_text' >0</span>
+  </div>
+  <div id="time_div">
+  Time: <span id='timer' class='orange_text' >-</span>
+  </div>
+  <canvas id="cake_stack" >
+  </canvas>
+
+	<!-- <img src="file:///android_asset/images/game/bowl_back.png"></img> -->
+
+	<audio src="file:///android_asset/sound/wackacake.ogg"></audio>
+
+
+  <canvas id="main_canvas">
+      <p>
+          Sorry, you need an HTML5 enabled browser to play this game :( <br>
+          Please check out <a href="http://chrome.google.com">Google Chrome.</a>
+      </p>
+  </canvas>
+
+  <div id="frame_div">
+  Frames: <span id='frames' >0</span>
+  </div>
+</div>
+<button id="startButton" type="button" onclick="buttonClicked()">Start</button>
+<form action="" method="get" accept-charset="utf-8">
+    <ul style="list-style-type:none; display:none">
+        <li>
+            <label for="spawnProbText">Spawn probability: </label>
+            <input name="spawProbText" id="spawnProbText" />
+        </li>
+        <li>
+            <label for="goodScoreText">Good Score</label>
+            <input name="goodScoreText" id="goodScoreText" />
+        </li>
+        <li>
+            <label for="badScoreText">Bad Score</label>
+            <input name="badScoreText" id="badScoreText" />
+        </li>
+</ul>
+</form>
+
+</body>
+</html>

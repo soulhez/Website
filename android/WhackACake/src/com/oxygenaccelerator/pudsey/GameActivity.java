@@ -5,6 +5,8 @@ import java.io.File;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -21,6 +23,10 @@ public class GameActivity  extends Activity{
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        
+	        requestWindowFeature(Window.FEATURE_NO_TITLE);
+	        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+	                                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+	        
 	        setContentView(R.layout.game);
 	            
 	        
@@ -29,6 +35,11 @@ public class GameActivity  extends Activity{
 	        WebSettings ws = webview.getSettings();
 	        
 	        ws.setJavaScriptEnabled(true);
+	        ws.setSupportZoom(true);
+	        ws.setBuiltInZoomControls(true);
+	        ws.setDefaultZoom(WebSettings.ZoomDensity.FAR);
+	   //     ws.setLoadWithOverviewMode(true);
+	        ws.setUseWideViewPort(true);
 	        
 	        webview.setWebChromeClient(new MyWebChromeClient());
 	        
@@ -38,13 +49,15 @@ public class GameActivity  extends Activity{
 	            public void onPageFinished(WebView view, String url)  
 	            {  
 	                webview.loadUrl("javascript:(function() { " +  
-	                        "whackacake.init(); " +  
+	                        "whackacake.start(); " +  
 	                        "})()");  
 	            }  
 	        });  
 	        
 	        
-	        webview.loadUrl("file:///android_asset/index.html");
+	        
+	        
+	        webview.loadUrl("file:///android_asset/game_demo.html");
 	        
 	               
 	 }
