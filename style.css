@@ -346,4 +346,7 @@ background-position: 0px -1967px;
 background-position: 0px -2460px;
 }
 
-
+.logos {
+	text-align: center ;
+	padding-top: 12px;
+}
